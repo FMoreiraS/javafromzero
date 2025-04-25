@@ -7,9 +7,12 @@ programação, com as especificidades da linguagem. **core** explora o próprio 
 tópicos separados por pacotes (com exceção de sobrecarga e construtores, que julguei conveniente
 unir). Cada pacote tem uma classe de comentário e dois pacotes: `domain` e `test`, que servem
 para observar o comportamento sintático em cada assunto. <br>
-Vale observar que o leitor terá um "bônus" no `intro`: verá os erros de raciocínio de alguém
-inexperiente, percebendo a importância de ter uma base bem formada e de se corrigir sempre.
+"Bônus" no `intro`: os erros de raciocínio de alguém  inexperiente, que indicam a importância de
+ter uma base bem formada e de se corrigir sempre.
+Os exercícios realizados foram obtidos numa [playlist](https://www.youtube.com/playlist?list=PL62G310vn6nFIsOCC0H-C2infYgwm8SWW),
+do YT, por isso cito o professor e registro as resoluções dele após as minhas, para comparar.
 ## Índice
+Obs.: Os pacotes no core receberam letras no início dos nomes apenas para ordenar, por isso omito aqui.
 - `intro`
   1. Basics
   2. PrimitiveTypes
