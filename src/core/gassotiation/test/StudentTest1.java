@@ -3,7 +3,7 @@ package core.gassotiation.test;
 import core.gassotiation.domain.Student;
 import core.gassotiation.domain.School;
 
-public class StudentTest {
+public class StudentTest1 {
     public static void main(String[] args) {
         Student socrates = new Student("Sócrates");
         Student plato = new Student("Platão");
@@ -18,18 +18,6 @@ public class StudentTest {
 
         System.out.println("------------------------------------");
 
-        School antique = new School("Antiguidade");
-        socrates.setSchool(antique);
-        plato.setSchool(antique);
-        aristoteles.setSchool(antique);
-
-        System.out.println("Ojetos associados à escola Antiguidade");
-        socrates.print();
-        plato.print();
-        aristoteles.print();
-
-        System.out.println("------------------------------------");
-
         Student albertus = new Student("Alberto de Colônia");
         Student thomas = new Student("Tomás de Aquino");
         Student[] students = {albertus, thomas};
@@ -37,5 +25,17 @@ public class StudentTest {
 
         System.out.println("School Escolástica associada a vários students:");
         scholastic.print();
+
+        System.out.println("------------------------------------");
+
+        School antique = new School("Antiguidade");
+        socrates.setSchool(antique);
+        plato.setSchool(antique);
+        aristoteles.setSchool(antique);
+
+        System.out.println("Objetos associados à escola Antiguidade");
+        socrates.print();
+        plato.print();
+        aristoteles.print();
     }
 }

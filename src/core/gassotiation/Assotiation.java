@@ -9,16 +9,14 @@ public class Assotiation {
     Student aristoteles = new Student("Aristoteles");
     Student[] greeks = {socrates, plato, aristoteles};
 
-    Mas não se trata de associação.
+    Mas não isso não é associação.
     UNIDIRECTIONAL ASSOTIATION: é a associação que ocorre entre um objeto e vários ou entre vários
     objetos e um só. Remodelando o exemplo, pode-se associar vários students num objeto school.
 
     School antique = new School("Antiguidade");
     plato.setSchool(antique);
 
-    System.out.println("------------------------------------");
-
-    System.out.println("Ojeto associado à escola Antiguidade");
+    System.out.println("Objeto associado à escola Antiguidade");
 
     Ou associar um objeto (school) a vários (students):
 
@@ -30,5 +28,6 @@ public class Assotiation {
     albertus.print();
     thomas.print();
 
+    Essas são as chamadas associacões "many to one" e "one to many", respectivamente.
     */
 }

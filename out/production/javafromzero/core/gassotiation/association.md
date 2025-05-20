@@ -1,0 +1,33 @@
+## Associação
+Associação é a relação entre objetos ou classes, como por exemplo a relação entre um carro e seu proprietário.
+(Quando se usar "objetos", adiante, entenda-se que valem também para classes, as relações.) Uma forma simples 
+de relacionar é criar um array de objetos de mesma classe:  
+```
+    Student socrates = new Student("Socrates");
+    Student plato = new Student("Plato");
+    Student aristoteles = new Student("Aristoteles");
+    Student[] greeks = {socrates, plato, aristoteles};
+```
+Mas não isso não é associação.  
+### UNIDIRECTIONAL ASSOTIATION:
+É a que ocorre entre um objeto e vários ou entre vários objetos e um só. Remodelando o exemplo,
+pode-se associar vários students num objeto school.
+```
+    School antique = new School("Antiguidade");
+    plato.setSchool(antique);
+
+    System.out.println("Objeto associado à escola Antiguidade");
+```
+Ou associar um objeto (school) a vários (students):
+```
+    School scholastic = new School("Escolástica");
+    Student albertus = new Student("Alberto de Colônia", scholastic);
+    Student thomas = new Student("Tomás de Aquino", scholastic);
+
+    System.out.println("School Escolástica associada a vários students:");
+    albertus.print();
+    thomas.print();
+```
+Essas são as chamadas associacões "many to one" e "one to many", respectivamente.
+### Bidirecional association
+É a que ocorre mutuamente entre objetos, ou seja, um está associado ao outro, e não apenas um, como antes.
