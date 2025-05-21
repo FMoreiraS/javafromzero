@@ -1,4 +1,4 @@
-package core.gassotiation.domain;
+package core.gassociation.domain;
 
 public class School {
     private String name;
@@ -14,6 +14,7 @@ public class School {
     }
 
     public void print() {
+        System.out.println("Escola " + this.getName());
         if(students == null) return;
         for(Student student: students) {
             System.out.println(student.getName());
@@ -22,9 +23,5 @@ public class School {
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

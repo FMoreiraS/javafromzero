@@ -1,4 +1,4 @@
-package core.gassotiation.domain;
+package core.gassociation.domain;
 
 public class Student {
     private String name;
@@ -14,9 +14,9 @@ public class Student {
     }
 
     public void print() {
-        System.out.println("Name: " + this.getName());
+        System.out.print("Student " + this.getName());
         if(this.school != null) {
-            System.out.println("School: " + school.getName());
+            System.out.println(" da School " + school.getName());
         }
         // O if evita uma nullPointerException, já que school pode não existir.
     }
@@ -29,7 +29,4 @@ public class Student {
         return this.name;
     }
 
-    public String getSchoolName() {
-        return this.school.getName();
-    }
 }

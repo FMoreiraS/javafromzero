@@ -28,4 +28,15 @@ Ou associar vários students num objeto school:
 Essas são as chamadas associacões "one to many" e "many to one", respectivamente.
 ### Bidirecional association
 É a que ocorre mutuamente entre objetos, ou seja, um está associado ao outro, e não apenas um, como antes.
-Agora, soldados estarão associados a um exército e o exército, aos soldados:
+Agora, guerreiros estarão associados a um exército e o exército, aos guerreiros:
+````
+Warrior knight = new Warrior("Cavaleiro Alexander");
+Warrior archer = new Warrior("Arqueiro Fabricius");
+Army romanus = new Army("Exercitus Romanus");
+
+        // Mútua associação:
+        knight.setArmy(romanus);
+        archer.setArmy(romanus);
+        
+        romanus.setWarriors(knight, archer);
+````
