@@ -17,7 +17,16 @@ public class Academician {
 
     public void print() {
         System.out.println("--------------------------------");
-        System.out.println("Estudante " + this.getName() + ", idade: " + this.getAge());
+        System.out.println("Estudante " + this.getName() + ", " + this.getAge() + " anos");
+        if(this.seminary != null) {
+            System.out.println("Seminário escolhido:\n" + getSeminaryName());
+        }
+        System.out.println("--------------------------------");
+    }
+
+    public void show(int index) {
+        System.out.println("--------------------------------");
+        System.out.println(index + " - " + this.getName() + ", " + this.getAge() + " anos");
         if(this.seminary != null) {
             System.out.println("Seminário escolhido:\n" + getSeminaryName());
         }

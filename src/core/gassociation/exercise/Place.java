@@ -1,15 +1,19 @@
 package core.gassociation.exercise;
 
-public class Local {
+public class Place {
     private String address;
     private Seminary seminary;
 
-    public Local(String address) {
+    public Place(String address) {
         this.address = address;
     }
 
     public void print() {
         System.out.println(this.getAddress() + ": receberá o seminário " + this.getSeminaryTitle());
+    }
+
+    public void show(int index) {
+        System.out.println(index + this.getAddress() + ": receberá o seminário " + this.getSeminaryTitle());
     }
 
     public void setSeminary(Seminary seminary) {

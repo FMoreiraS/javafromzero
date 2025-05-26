@@ -24,7 +24,19 @@ public class Professor {
                 System.out.println(seminary.getTitle());
             }
         }
-            System.out.println("--------------------------------");
+        System.out.println("--------------------------------");
+    }
+
+    public void show(int index) {
+        System.out.println("--------------------------------");
+        System.out.println(index + " - " + this.getName() + ", especialidade: " + this.getSpecialty());
+        if(this.seminaries != null) {
+            System.out.println("Seminários assumidos:");
+            for (Seminary seminary : this.seminaries) {
+                System.out.println(seminary.getTitle());
+            }
+        }
+        System.out.println("--------------------------------");
     }
 
     public void setSeminaries(Seminary... seminaries) {
