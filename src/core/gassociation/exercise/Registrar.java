@@ -11,13 +11,15 @@ O sistema deverá cadastrar seminários, estudantes, professores e locais de rea
 Um aluno poderá estar em apenas um seminário;
 Um seminário poderá ter nenhum ou vários alunos;
 Um professor poderá ministrar vários seminários
-Um seminário deve ter um place.
+Um seminário deve ter um local.
+
+OBS.: esses são os relacionamentos, ir além disso sai dos requisitos.
 
 Campos básicos (excluindo relacionamento)
 Seminário: título
 Aluno: nome e idade
 Professor: nome, especialidade
-place: endereço
+local: endereço
  */
 
 public class Registrar {
