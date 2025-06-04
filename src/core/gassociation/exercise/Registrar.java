@@ -42,8 +42,8 @@ public class Registrar {
             System.out.println("1. Cadastrar seminário.");
             System.out.println("2. Cadastrar professor.");
             System.out.println("3. Cadastrar estudante.");
-            System.out.println("4. Cadastrar place.");
-            System.out.println("5. Cadastrar seminário com professor, place e participantes.");
+            System.out.println("4. Cadastrar local.");
+            System.out.println("5. Fazer cadastro completo (local, seminário, professor e alunos).");
             System.out.println("6. Listar seminários.");
             System.out.println("7. Listar professores.");
             System.out.println("8. Listar estudantes.");
@@ -98,36 +98,36 @@ public class Registrar {
     }
 
 
-    public static void registerWithoutScanner(Seminary seminary, Professor teacher, Place address, Academician... participants) {
+//    public static void registerWithoutScanner(Seminary seminary, Professor teacher, Place address, Academician... participants) {
 //        Seminary metaphysicalView = new Seminary("Visão Metafísica da Realidade");
 //        Professor profGregorio = new Professor("Gregório Santana", "Metafísica");
 //        Academician carlos = new Academician("Carlos Braga", 22);
 //        place auditorium = new place("Auditório da Universidade");
-
-        teacher.setSeminaries(seminary);
-        address.setSeminary(seminary);
-        //carlos.setSeminary(metaphysicalView);
-
-        seminary.setProfessor(teacher);
-        seminary.setPlace(address);
-        //seminary.setParticipant(participants);
-
-        defineParticipants(seminary);
-        incrementSeminaries(seminary);
-    }
+//
+//        teacher.setSeminaries(seminary);
+//        address.setSeminary(seminary);
+//        //carlos.setSeminary(metaphysicalView);
+//
+//        seminary.setProfessor(teacher);
+//        seminary.setPlace(address);
+//        //seminary.setParticipant(participants);
+//
+//        defineParticipants(seminary);
+//        incrementSeminaries(seminary);
+//    }
 
     static void registerSeminary() {
+        System.out.println("Indique o local onde ocorrerá.");
+        Place address = new Place("Auditório");
         System.out.println("Digite o título do seminário.");
         Seminary seminary = new Seminary("Teste A");
-        System.out.println("Indique o place onde ocorrerá.");
-        Place address = new Place("Auditório");
-        System.out.println("Indique o professor responsável.");
-        Professor teacher = new Professor("Fulano");
-        System.out.println("Indique a especialidade do professor.");
-        teacher.setSpecialty("Doutor em alguma coisa");
+//        System.out.println("Indique o professor responsável.");
+//        Professor teacher = new Professor("Fulano");
+//        System.out.println("Indique a especialidade do professor.");
+//        teacher.setSpecialty("Doutor em alguma coisa");
 
         seminary.setPlace(address);
-        seminary.setProfessor(teacher);
+        //seminary.setProfessor(teacher);
 
         seminary.print();
 
@@ -142,8 +142,8 @@ public class Registrar {
         teacher.setSpecialty("Doutor");
         System.out.println("Indique qual seminário o professor ministrará.");
         // todo: verificar se é apenas um.
-        teacher.setSeminaries(registeredSeminaries[seminaryIndex]);
-        // verificar a nulidade no seminaryIndex.
+        if(registeredSeminaries[seminaryIndex] != null)
+            teacher.setSeminaries(registeredSeminaries[seminaryIndex]);
         teacher.print();
         registeredProfessors[professorIndex] = teacher;
         professorIndex++;
@@ -164,11 +164,11 @@ public class Registrar {
     }
 
     static void registerPlace() {
-        System.out.println("Indique o endereço.");
+        System.out.println("Cadastro de local. Indique o endereço.");
         Place address = new Place("Endereço");
-        System.out.println("Indique qual seminário ocorrerá neste local.");
-        showSeminaries();
-        address.setSeminary(registeredSeminaries[0]);
+//        System.out.println("Indique qual seminário ocorrerá neste local.");
+//        showSeminaries();
+//        address.setSeminary(registeredSeminaries[0]);
         address.print();
         registeredPlaces[placeIndex] = address;
         placeIndex++;
@@ -176,19 +176,23 @@ public class Registrar {
 
     public static void registerAll() {
         //Scanner input = new Scanner(System.in);
-        System.out.println("Digite o título do Seminário:");
-        Seminary seminary = new Seminary(input.nextLine());
-        System.out.println("Digite o nome do professor responsável, tecle Enter e digite a especialidade.");
-        Professor teacher = new Professor(input.nextLine(), input.nextLine());
-        //Academician carlos = new Academician("Carlos Braga", 22);
-        System.out.println("Digite o nome do endereço onde ocorrerá o seminário:");
+        System.out.println("Digite o endereço onde ocorrerá o seminário:");
         Place address = new Place(input.nextLine());
 
+        System.out.println("Digite o título do Seminário:");
+        Seminary seminary = new Seminary(input.nextLine());
+
+        System.out.println("Digite o nome do professor responsável");
+        Professor teacher = new Professor(input.nextLine());
+        System.out.println("Digite a especialidade do professor.");
+        teacher.setSpecialty(input.nextLine());
+        //Academician carlos = new Academician("Carlos Braga", 22);
+
         teacher.setSeminaries(seminary);
-        address.setSeminary(seminary);
+        //address.setSeminary(seminary);
         //carlos.setSeminary(metaphysicalView);
 
-        seminary.setProfessor(teacher);
+        //seminary.setProfessor(teacher);
         seminary.setPlace(address);
 
         defineParticipants(seminary);
@@ -228,7 +232,9 @@ public class Registrar {
         }
         System.out.println("Seminários cadastrados");
         for(int i = 0; i < registeredSeminaries.length; i++) {
-            registeredSeminaries[i].show((i+1));
+            if(registeredSeminaries[i] != null) {
+                registeredSeminaries[i].show((i + 1));
+            }
         }
     }
 
@@ -239,29 +245,37 @@ public class Registrar {
         }
         System.out.println("Professores cadastrados");
         for(int i = 0; i < registeredProfessors.length; i++) {
-            registeredProfessors[i].show((i+1));
+            if(registeredProfessors[i] != null) {
+                registeredProfessors[i].show((i + 1));
+            }
         }
     }
 
     static void showAcademicians() {
-        if(registeredAcademician[0] == null) {
+        if (registeredAcademician[0] == null) {
             System.out.println("Não há estudantes cadastrados.");
             return;
         }
         System.out.println("Estudantes cadastrados");
-        for(int i = 0; i < registeredAcademician.length; i++) {
-            registeredProfessors[i].show((i+1));
+        for (int i = 0; i < registeredAcademician.length; i++) {
+            if (registeredAcademician[i] != null) {
+                registeredAcademician[i].show((i + 1));
+            }
         }
     }
 
-    static void showPlaces() {
-        if(registeredPlaces[0] == null) {
+    static void showPlaces () {
+        if (registeredPlaces[0] == null) {
             System.out.println("Não há locais cadastrados.");
             return;
         }
+        System.out.println("---------------------------------");
         System.out.println("Locais cadastrados");
-        for(int i = 0; i < registeredPlaces.length; i++) {
-            registeredProfessors[i].show((i+1));
+        for (int i = 0; i < registeredPlaces.length; i++) {
+            if(registeredPlaces[i] != null) {
+                registeredPlaces[i].show((i + 1));
+            }
         }
+        System.out.println("---------------------------------");
     }
 }
