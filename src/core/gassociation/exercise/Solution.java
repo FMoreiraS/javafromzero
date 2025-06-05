@@ -23,18 +23,14 @@ public class Solution {
         private Local local;
         private Aluno[] alunos;
 
-        public Seminario(String titulo) {
+        public Seminario(String titulo, Local local) {
             this.titulo = titulo;
+            this.local = local;
         }
 
-        public Seminario(String titulo, Local endereco) {
+        public Seminario(String titulo, Local local, Aluno[] alunos) {
             this.titulo = titulo;
-            this.local = endereco;
-        }
-
-        public Seminario(String titulo, Local endereco, Aluno[] alunos) {
-            this.titulo = titulo;
-            this.local = endereco;
+            this.local = local;
             this.alunos = alunos;
         }
 
