@@ -65,7 +65,7 @@ public class PrimitiveTypes {
         float salary = 3567.89F;
         String data = "30 de agosto de 2025";
         System.out.println("Eu, "+nome+", morando no endereço "+endereço+", confirmo que recebi o salário de R$ "+salary+", na data "+data+".");
-        /* O mestre William criou uma String para para a mensagem, ao invés de colocar a
+        /* O mestre William criou uma String para a mensagem, ao invés de colocar a
          * mensagem no print.
          * String relatorio = "Eu...";
          * System.out.println(relatorio);

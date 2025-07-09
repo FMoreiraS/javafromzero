@@ -27,7 +27,7 @@ public class Arrays {
          * Existem valores padrão para os tipos de vars. não inicializadas, quando são usadas
          * fora do escopo local ou num array:
          * byte, short, int, double, e float recebem 0;
-         * char recebe em unicode = '' (ou seja, '\u0000');
+         * char recebe unicode = '' (ou seja, '\u0000');
          * boolean recebe false;
          * refers (string, array) recebem null.
          * 
@@ -53,7 +53,7 @@ public class Arrays {
         int[] numeros = new int []{1, 2, 3, 4, 5};
         // 2. colocando elementos do array entre chaves,sem escrever new "tipo":
         int[] lista = {15, 14, 13, 12, 11};
-        // Existe também um outro for, simplificado, com o qual podemos designar um array
+        // Existe também outro for, simplificado, com o qual podemos designar um array
         // sem declarar índices para os elementos, usando apenas uma var. local, chamado FOR EACH.
         for (int var : lista) {    // Pode-se entender: int var percorrendo lista.
             System.out.println(var);
