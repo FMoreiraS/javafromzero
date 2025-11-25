@@ -64,3 +64,24 @@ public class Person {
     protected Address address;
     ...
 ````
+## Construtores
+Quando classes estendem outras, ficam sujeitas às mesmas regras impostas pelos
+construtores das superclasses estendidas. Por isso, se, por exemplo, a classe
+`Employee` estende `Person`, e esta tem construtores que obrigam a criação
+de objetos com pelo menos o parâmetro `String name`, Employee só poderá originar
+objetos se usar valores para esse atributo:  
+`public Person(String name)` ➡️ `public Employee(String name)`  
+E se é possível chamar construtores em outros construtores, pode-se escrever:
+````
+public class Employee {
+    
+    public Employee(String name) {
+        super(name);
+    }
+    // e também:
+    public Employee(String name, double salary) {
+        super(name);
+        this.salary = salary;
+    }
+}
+````
