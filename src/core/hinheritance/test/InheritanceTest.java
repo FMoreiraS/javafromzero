@@ -1,8 +1,6 @@
 package core.hinheritance.test;
 
-import core.hinheritance.domain.Address;
-import core.hinheritance.domain.Employee;
-import core.hinheritance.domain.Person;
+import core.hinheritance.domain.*;
 
 public class InheritanceTest {
     public static void main(String[] args) {
@@ -19,7 +17,7 @@ public class InheritanceTest {
         peter.setAddress(address);
         peter.setSalary(8000);
 
-        System.out.println("print() com objeto tipo Employee");
+        System.out.println("\nprint() com objeto tipo Employee");
         peter.print();
         System.out.println("\nResultados iguais".toUpperCase());
 
