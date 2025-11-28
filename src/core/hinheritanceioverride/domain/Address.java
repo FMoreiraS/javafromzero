@@ -1,4 +1,4 @@
-package core.hinheritance.domain;
+package core.hinheritanceioverride.domain;
 
 public class Address {
     private String street;

@@ -1,7 +1,7 @@
-package core.hinheritance.test;
+package core.hinheritanceioverride.test;
 
-import core.hinheritance.domain.Employee;
-import core.hinheritance.domain.Person;
+import core.hinheritanceioverride.domain.Employee;
+import core.hinheritanceioverride.domain.Person;
 
 public class OverrideTest {
 

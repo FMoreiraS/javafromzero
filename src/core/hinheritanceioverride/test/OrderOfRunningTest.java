@@ -1,6 +1,6 @@
-package core.hinheritance.test;
+package core.hinheritanceioverride.test;
 
-import core.hinheritance.domain.Ship;
+import core.hinheritanceioverride.domain.Ship;
 
 public class OrderOfRunningTest {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package core.hinheritance.domain;
+package core.hinheritanceioverride.domain;
 
 public class Employee extends Person{
     private double salary;

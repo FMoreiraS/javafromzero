@@ -1,6 +1,6 @@
-package core.hinheritance.test;
+package core.hinheritanceioverride.test;
 
-import core.hinheritance.domain.*;
+import core.hinheritanceioverride.domain.*;
 
 public class InheritanceTest {
     public static void main(String[] args) {
