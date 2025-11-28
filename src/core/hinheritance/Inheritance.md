@@ -1,4 +1,4 @@
-# Herança
+# Herança 
 A herança possibilita que uma classe *receba propriedades* de outra, que
 pode ser chamada **superclasse** ou "classe pai", mediante a palavra
 **extends** (estende), evitando, assim, a reescrita de características em
@@ -57,7 +57,7 @@ public class Employee extends Person{
 }
 // "super" invoca o método print da superclasse Person usando os atributos (name, cpf...) da subclasse Employee.
 ````
-## Modificador protected
+## Modificador protected (#)
 É um modificador de acesso que permite o acesso às propriedades de uma
 superclasse a todas as classes do pacote e às subclasses (em qualquer pacote).
 Se tentarmos usar um atributo como o *name* da classe Person em um método da
@@ -104,10 +104,92 @@ public class Employee extends Person{
 > Tanto *super()* quanto *this()* podem ser usados para chamar construtores e
 > exigem ser colocados na primeira linha válida do bloco do construtor
 > onde são usados, logo não se pode usá-los juntos.
+> 
 Um detalhe importante: todas as classes estendem (implicitamente) a classe
 `Object`. Por isso, todas herdam métodos não explícitos nelas (basta usar
-"." como se fosse invocar um método, para constatar).
+num IDE o "." como se fosse invocar um método, para constatar).
 **Java não permite herança múltipla**, ou seja, uma mesma classe não pode
 estender mais de uma classe, mas esses métodos podem ser herdados de Object
 por ser possível definir hierarquias de heranças, de modo que uma subclasse
 estenda outra e esta estenda Object, como no exemplo.
+## Efeito na ordem de execução
+Anteriormente tratou-se dos blocos de inicialização e do modificador
+**static** e do como eles afetam a ordem de execução, que ficou assim:
+1. Execução de tudo que é estático quando a JVM carrega a classe;
+2. Alocação de espaço em memória para objetos;
+3. Inicialização dos atributos com valores padrão ou determinados pelo autor;
+4. Execução do bloco de inicialização;
+5. Execução dos construtores.
+O uso de herança aumenta a complexidade dessa ordem, já que existe uma
+dependência entre classes. Pode-se observar o funcionamento da execução
+usando alguns blocos de inicialização estáticos e não estáticos
+nas classes de exemplo Vehicle e Ship.
+````
+// superclasse
+public class Vehicle {
+
+    protected String name;
+    protected String type;
+    protected int fuelCapacityInLiters;
+
+    static{
+        System.out.println("Bloco de inicialização estático de Vehicle");
+    }
+    {
+        System.out.println("Bloco de inicialização não estático 1 de Vehicle");
+    }
+    {
+        System.out.println("Bloco de inicialização não estático 2 de Vehicle");
+    }
+
+    public Vehicle() {
+        System.out.println("Construtor de Vehicle");
+    }
+}
+// subclasse
+public class Ship extends Vehicle{
+    
+    static{
+        System.out.println("Bloco de inicialização estático de Ship");      
+    }
+    {
+        System.out.println("Bloco de inicialização não estático 1 de Ship");
+    }
+    {
+        System.out.println("Bloco de inicialização não estático 2 de Ship");
+    }
+    
+    public Ship() {
+        System.out.println("Construtor de Ship");
+    }
+}
+// Feito isso, a criação de um objeto do tipo Ship gera essas mensagens
+// (cf. a classe de teste):
+Bloco de inicialização estático de Vehicle
+Bloco de inicialização estático de Ship
+Bloco de inicialização não estático 1 de Vehicle
+Bloco de inicialização não estático 2 de Vehicle
+Construtor de Vehicle
+Bloco de inicialização não estático 1 de Ship
+Bloco de inicialização não estático 2 de Ship
+Construtor de Ship
+````
+Em suma, a ordem de execução quando existem relações de herança fica assim:
+1. blocos de inicialização estáticos, da superclasse e da subclasse;
+2. blocos de inicialização não estáticos da superclasse, na ordem de escrita;
+3. construtor da superclasse;
+4. blocos de inicialização não estáticos da subclasse, na ordem de escrita;
+5. construtor da subclasse.
+Ou seja, tudo que é estático é carregado primeiro, da classe e da subclasse,
+mas depois a superclasse ganha precedência.
+## Sobrescrita e método toString
+Notamos que a impressão de variáveis de referência (arrays, objetos)
+tem sempre valores no formato "nomecompleto.hash". Uma vez que não são
+strings, não têm um valor para imprimir, mas obtemos esses valores como
+confirmação de que esses objetos não são nulos. Isso só é possível pela
+existência do método `toString`, na classe Object.  
+Em tópicos anteriores (como na introdução a métodos), criou-se métodos
+para imprimir as informações dos objetos. Mas isso pode ser feito com
+o método *toString*, por meio da **sobrescrita** do método. Para fazê-lo
+explicitamente, usa-se a anotação `@Override`, e com ela, se o nome
+do método na subclasse não for idêntico, o compilador avisa sobre o erro.
