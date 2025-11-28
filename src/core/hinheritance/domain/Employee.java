@@ -12,6 +12,13 @@ public class Employee extends Person{
         System.out.println(this.salary);
     }
 
+    @Override
+    public String toString() {
+        return "Employee: " + name +
+                "; salary = " + salary +
+                ";\nCPF = " + cpf + ";\naddress: " + address;
+    }
+
     public double getSalary() {
         return salary;
     }
