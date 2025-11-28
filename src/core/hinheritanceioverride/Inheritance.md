@@ -192,4 +192,9 @@ Em tópicos anteriores (como na introdução a métodos), criou-se métodos
 para imprimir as informações dos objetos. Mas isso pode ser feito com
 o método *toString*, por meio da **sobrescrita** do método. Para fazê-lo
 explicitamente, usa-se a anotação `@Override`, e com ela, se o nome
-do método na subclasse não for idêntico, o compilador avisa sobre o erro.
+do método na subclasse não for idêntico, o compilador avisa sobre o erro.  
+O método que sobrescreve deve ter:
+1. nome igual;
+2. retorno igual ou equivalente (uma classe herdeira da original);
+3. acesso igual ou mais amplo (p. ex., não pode passar de protected para private).
+Outras regras de sobrescrita podem ser tratadas futuramente.
