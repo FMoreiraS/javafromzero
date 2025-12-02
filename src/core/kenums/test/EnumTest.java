@@ -23,11 +23,12 @@ public class EnumTest {
         Customer customer5 = new Customer("Alexander", StatesOfBrazil.SAO_PAULO);
         System.out.println(customer5.getInfo());
 
-        System.out.println("Teste de valueOf");
+        System.out.println("Teste do valueOf()");
         // Só consegue retornar um valor da enumeração se receber o
-        // nome real, não o formatado.
+        // nome real, não um atributo, como o nome formatado.
         StatesOfBrazil stateSP = StatesOfBrazil.valueOf("SAO_PAULO");
         System.out.println(stateSP.FORMATTED_NAME);
         System.out.println("Teste da busca por atributo");
+        StatesOfBrazil statePA = StatesOfBrazil.getStateFromFormattedName("Pará");
     }
 }
