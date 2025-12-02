@@ -144,4 +144,8 @@ Para obter o valor da enum, podemos criar um método no arquivo dela.
         }
         return null;
     }
+    // Usando este método, basta colocarmos a string de um dos nomes
+    // formatados, para obtermos o valor da enum (cf. a classe de testes):
+    System.out.println("Teste da busca por atributo");
+    StatesOfBrazil statePA = StatesOfBrazil.getStateFromFormattedName("Pará");
 ````
