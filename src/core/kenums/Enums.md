@@ -75,10 +75,10 @@ public enum StatesOfBrazil {
     RIO_DE_JANEIRO("Rio de Janeiro"),
     ESPIRITO_SANTO("Espírito Santo");
 
-    public final String NAME;
+    public final String FORMATTED_NAME;
 
     private StatesOfBrazil(String name) {
-        this.NAME = name;
+        this.FORMATTED_NAME = name;
     }
 }
 ````
@@ -121,5 +121,27 @@ public enum FormOfPayment {
 Não se tratou ainda da abstração (um dos pilares da POO), mas vale mencionar
 que numa situação como esta, onde o método não tem comportamento padrão, é
 melhor criar um *método abstrato*, pois ele não pode ter corpo, serve apenas
-para ser sobrescrito, causando erro se não o for por cada classe (ou, aqui,
+para ser sobrescrito, causando erro se não o for por cada subclasse (ou, aqui,
 por cada valor da enumeração).
+## Busca por atributos
+É possível obter o valor de uma enum usando um atributo, e com isso obter,
+por exemplo, o valor de outros atributos que existam. Existe um método capaz
+de retornar em string o tipo do valor parâmetro:
+````
+    // valueOf() só consegue retornar um valor da enumeração se receber o
+    // nome real, não o formatado.
+    StatesOfBrazil stateSP = StatesOfBrazil.valueOf("SAO_PAULO");
+    System.out.println(stateSP.FORMATTED_NAME);
+````
+Para obter o valor da enum, podemos criar um método no arquivo dela.
+````
+    public static StatesOfBrazil getStateFromFormattedName(String formattedName) {
+        for(StatesOfBrazil state : values()) {
+            // values() retorna um array com os valores da enumeração.
+            if(state.FORMATTED_NAME.equals(formattedName)) {
+                return state;
+            }
+        }
+        return null;
+    }
+````

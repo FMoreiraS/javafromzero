@@ -48,7 +48,7 @@ public class Customer {
 
     public String getInfo() {
         return "Customer [name=" + name + ", stateOfResidence="
-        + stateOfResidence.NAME + ", paymentType=" + paymentType + "]";
+        + stateOfResidence.FORMATTED_NAME + ", paymentType=" + paymentType + "]";
     }
 
     // public String toString() {
