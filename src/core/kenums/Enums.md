@@ -149,3 +149,10 @@ Para obter o valor da enum, podemos criar um método no arquivo dela.
     System.out.println("Teste da busca por atributo");
     StatesOfBrazil statePA = StatesOfBrazil.getStateFromFormattedName("Pará");
 ````
+### Regras de métodos abstratos
+Existe um caso em que a implementação de um método abstrato é *opcional*.
+Se uma classe abstrata estende outra classe abstrata que possui um método
+abstrato, a subclasse pode ou não sobrescrever esse método, mas, por padrão,
+o compilador acusa erro apenas nas classes que estendam a subclasse abstrata.
+Se a implementação do método for feita na classe abstrata, nenhuma outra
+implementação é obrigatória.
