@@ -79,3 +79,16 @@ public class Smartphone implements Camera, Telephone, AudioPlayer{
     }
 }
 ````
+## Atributos e métodos estáticos
+Interfaces também podem ter atributos e métodos estáticos, eles comportam-se
+como em classes, ou seja, são acessados pela própria interface, não pelas
+implementações dela. Além disso, **métodos estáticos não podem ser
+sobrescritos**, é o padrão.  
+Note-se que os **atributos de interfaces são sempre constantes públicas e
+estáticas**. Sendo assim, é desnecessário criar numa interface atributos assim:  
+````
+public interface Vehicle {
+    public static final int maxNumberOfFuelTanks = 2;
+    ...
+}
+````
