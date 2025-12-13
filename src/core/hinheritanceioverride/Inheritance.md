@@ -182,7 +182,7 @@ Em suma, a ordem de execução quando existem relações de herança fica assim:
 5. construtor da subclasse.
 Ou seja, tudo que é estático é carregado primeiro, da classe e da subclasse,
 mas depois a superclasse ganha precedência.
-## Sobrescrita e método toString
+## Sobrescrita
 Notamos que a impressão de variáveis de referência (arrays, objetos)
 tem sempre valores no formato "nomecompleto.hash". Uma vez que não são
 strings, não têm um valor para imprimir, mas obtemos esses valores como
@@ -197,4 +197,7 @@ O método que sobrescreve deve ter:
 1. nome igual;
 2. retorno igual ou equivalente (uma classe herdeira da original);
 3. acesso igual ou mais amplo (p. ex., não pode passar de protected para private).
+
+Ordem dos modificadores de acesso, do mais restritivo ao menos restritivo:  
+`private ➡️ default ➡️ protected ➡️ public`  
 Outras regras de sobrescrita podem ser tratadas futuramente.
