@@ -31,4 +31,7 @@ Obs.: Os pacotes no core receberam letras no início dos nomes apenas para orden
   6. Associação
   7. Herança
   8. Modificador "final"
-  9. Enumerações
+  9. Enumerações (enums)
+  10. Classes abstratas
+  11. Interfaces
+  12. Polimorfismo
