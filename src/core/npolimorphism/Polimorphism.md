@@ -52,6 +52,17 @@ private void showInfo(Computer c) {
 > Para fazer uso dessa utilidade do polimorfismo (chamada *widening cast*),
 > não é necessário criar os objetos com variável de referência genérica.
 
+> [!Tip]
+> Uma vez que é possível criar objetos usando uma variável de referência
+> genérica e dar múltiplas implementações para métodos de interfaces,
+> podemos desenvolver seguindo o conceito de **programação orientada a
+> interfaces**. Ou seja, podemos sempre usar métodos de interfaces e criar
+> com tipos genéricos objetos que as implementam, porque **o desacoplamento
+> facilitará a manutenção**. Quando for necessário mudar o comportamento
+> do método, bastará substituir o tipo do objeto (após "= new") e,
+> assim, a implementação do método. Isso é feito, por exemplo, com as
+> *collections* (certas estruturas de dados em Java), que possuem várias
+> implementações para os mesmos métodos.
 ## **instanceof**
 É possível fazer o contrário do que acaba de ser feito, ou seja, usar um tipo
 genérico como um tipo mais específico, o chamado "narrowing cast". Mantendo o
@@ -80,13 +91,13 @@ private void showInfo(Computer c) {
 > double
 > ````
 
-Se fazemos essa adição com atenção, notamos um problema: o compilador não
-questiona um cast, mas teremos exceção se o método for usado com um desktop
+Se fazemos atentamente essa adição, notamos um problema: o compilador não
+rejeita um cast, mas teremos exceção se o método for usado com um desktop
 como parâmetro. Para resolver, temos uma palavra reservada dedicada a
 averiguar o tipo de uma variável: **instanceof**. Ela *funciona como um
 operador relacional ou lógico*: dependendo de ser ou não a variável
-uma instância do tipo que segue, **gera-se valor true ou false**. Podemos
-então corrigir:
+uma instância do tipo que segue, a expressão **adquire valor true ou false**. 
+Podemos então corrigir:
 ````
 private void showInfo(Computer c) {
     System.out.println("--- Informações do computador ---");
@@ -101,3 +112,15 @@ private void showInfo(Computer c) {
     }
 }
 ````
+## Interface oriented programming
+Uma vez que é possível criar objetos usando uma variável de referência
+genérica (com o *widening cast*) e dar múltiplas implementações para
+métodos de interfaces, podemos desenvolver seguindo o conceito de
+**programação orientada a interfaces**. Ou seja, podemos usar preferencialmente
+métodos de interfaces e criar com tipos genéricos objetos que as implementem, porque **o desacoplamento facilitará a manutenção**.  
+Quando for necessário mudar o comportamento do método, bastará substituir o
+tipo do objeto (após "= new") e, assim, a implementação do método. Isso é
+feito, por exemplo, nas *collections* (certas estruturas de dados da
+linguagem), que possuem várias implementações para os mesmos métodos
+(cf. java.util.List.add(), java.util.ArrayList.add() e
+java.util.LinkedList.add()).
