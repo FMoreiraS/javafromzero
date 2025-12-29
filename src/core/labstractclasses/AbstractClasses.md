@@ -19,7 +19,7 @@ da indicação de retorno:
 `protected abstract void calculateSalaryBonus();`  
 > [!IMPORTANT]
 > Métodos abstratos só podem ser criados em classes abstratas, mas classes
-> abstratas podem ter tantos métodos abstratos quanto concretos (com corpo).
+> abstratas podem ter tanto métodos abstratos quanto concretos (com corpo).
 > Além disso, os métodos abstratos devem obrigatoriamente ser implementados,
 > mas isso não implica que o corpo deles nas subclasses tenha conteúdo.
 
