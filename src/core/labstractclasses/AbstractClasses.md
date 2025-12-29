@@ -30,7 +30,7 @@ Existe um caso em que a implementação de um método abstrato é *opcional*.
 Se uma classe abstrata estende outra classe abstrata que possui um método
 abstrato, a subclasse pode ou não sobrescrever esse método, mas, por padrão,
 o compilador acusa erro apenas nas classes que estendam a subclasse abstrata.
-Se a implementação do método for feita na classe abstrata, nenhuma outra
+Se a implementação do método for feita na subclasse abstrata, nenhuma outra
 implementação é obrigatória. Ex.: se a classe Employee estendesse a classe
 abstrata Person e esta tivesse o método abstrato `showInfo()`, a implementação
 deveria ser feita em cada "filha" de Employee, ou apenas em Employee.
