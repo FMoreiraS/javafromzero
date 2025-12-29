@@ -52,17 +52,6 @@ private void showInfo(Computer c) {
 > Para fazer uso dessa utilidade do polimorfismo (chamada *widening cast*),
 > não é necessário criar os objetos com variável de referência genérica.
 
-> [!Tip]
-> Uma vez que é possível criar objetos usando uma variável de referência
-> genérica e dar múltiplas implementações para métodos de interfaces,
-> podemos desenvolver seguindo o conceito de **programação orientada a
-> interfaces**. Ou seja, podemos sempre usar métodos de interfaces e criar
-> com tipos genéricos objetos que as implementam, porque **o desacoplamento
-> facilitará a manutenção**. Quando for necessário mudar o comportamento
-> do método, bastará substituir o tipo do objeto (após "= new") e,
-> assim, a implementação do método. Isso é feito, por exemplo, com as
-> *collections* (certas estruturas de dados em Java), que possuem várias
-> implementações para os mesmos métodos.
 ## **instanceof**
 É possível fazer o contrário do que acaba de ser feito, ou seja, usar um tipo
 genérico como um tipo mais específico, o chamado "narrowing cast". Mantendo o
