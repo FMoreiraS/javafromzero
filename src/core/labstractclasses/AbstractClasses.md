@@ -4,7 +4,7 @@ Classes abstratas são classes que **não podem ser instanciadas**, com a
 finalidade de serem estendidas. Isso serve para usar herança com maior
 controle, pois permite criar gêneros de entes, como veículo, obrigando uma
 especificação (dizer apenas "veículo" é vago, por que não dizer "carro",
-"avião?"). Se a classe é o modelo para os objetos (cf. introclasses), a
+"avião"?). Se a classe é o modelo para os objetos (cf. introclasses), a
 classe abstrata é o modelo para outras classes, nunca para objetos dela
 (relembre-se herança).  
 Para criar uma classe abstrata, basta usar `abstract` antes de "class" (pode ser antes do modificador de acesso, mas é comum depois).  
