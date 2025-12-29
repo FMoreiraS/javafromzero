@@ -18,19 +18,19 @@ public abstract class Computer {
 ...
 public class Laptop extends Computer {
     @Override
-    private void powerOn() {...}
+    public void powerOn() {...}
 
-    private void openLid() {...}
+    public void openLid() {...}
 }
 ...
 public class Desktop extends Computer {
     @Override
-    private void powerOn() {...}
+    public void powerOn() {...}
 }
 ````
 Ao criar um objeto Laptop ou Desktop, podemos usar o tipo Computer na variável
 de referência, assim:  
-`Computer c = new Desktop("NeoGen", "12/2025")`  
+`Computer desktop = new Desktop("PC9710", "01/2029");`  
 Usando o tipo da superclasse na variável de referência, é possível **acessar
 tudo o que a subclasse herda, mas não o que lhe é próprio**. Mas se existe
 essa limitação, por que o polimorfismo seria útil? Para favorecer a criação de
@@ -42,7 +42,7 @@ um método chamado `showInfo(Computer c)`, pois usaria apenas informações
 presentes em Computer, e não precisaríamos de vários métodos fazendo a mesma
 coisa com tipos diferentes, multiplicando enormemente a quantidade de código.
 ````
-private void showInfo(Computer c) {
+protected void showInfo(Computer c) {
     System.out.println("--- Informações do computador ---");
     System.out.println("Nome: " + c.getName());
     System.out.println("Data de fabricação: " + c.getManufacturingDate());
