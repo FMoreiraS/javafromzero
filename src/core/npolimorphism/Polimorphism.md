@@ -61,12 +61,12 @@ Digamos que os laptops agora devem ter webcam, então será bom ter informação
 sobre a resolução dela, mas os desktops não têm. Podemos acrescentar essa
 especificidade no showInfo():
 ````
-private void showInfo(Computer c) {
+protected void showInfo(Computer c) {
     System.out.println("--- Informações do computador ---");
     System.out.println("Nome: " + c.getName());
     System.out.println("Data de fabricação: " + c.getManufacturingDate());
     // O cast, com o tipo e os parênteses
-    Laptop laptop = (laptop) computer;
+    Laptop laptop = (laptop) c;
     System.out.println("Resolução da webcam: " + laptop.getWebcamResolution());
 }
 ````
@@ -88,17 +88,18 @@ operador relacional ou lógico*: dependendo de ser ou não a variável
 uma instância do tipo que segue, a expressão **adquire valor true ou false**. 
 Podemos então corrigir:
 ````
-private void showInfo(Computer c) {
+public static void showInfo(Computer c) {
     System.out.println("--- Informações do computador ---");
     System.out.println("Nome: " + c.getName());
     System.out.println("Data de fabricação: " + c.getManufacturingDate());
-    if(computer instanceof Laptop) {
-        // Podemos fazer o cast do objeto...
-        Laptop laptop = (Laptop) computer;
-        // Ou acessar logo a propriedade, que ainda poderia estar no println()
-        String webcamResolution = ((Laptop) computer).getWebcamResolution();
-        System.out.println("Resolução da webcam: " + webcamResolution);
-    }
+        if(c instanceof Laptop) {
+            // Podemos fazer o cast do objeto...
+            // Laptop laptop = (Laptop) c;
+            // Ou acessar logo a propriedade, que ainda poderia estar no println()
+            String webcamResolution = ((Laptop) c).getWebcamResolution();
+            System.out.println("Resolução da webcam: " + webcamResolution);
+        }
+    System.out.println("---------------------------------");
 }
 ````
 ## Interface oriented programming
