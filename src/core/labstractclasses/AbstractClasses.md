@@ -24,7 +24,7 @@ da indicação de retorno:
 > mas isso não implica que o corpo deles nas subclasses tenha conteúdo.
 
 Portanto, a classe abstrata funciona como um "contrato" que impõe regras
-para a criação de toda classe que a estenda, 
+para a criação de toda classe que a estenda.
 ### Regra de implementação
 Existe um caso em que a implementação de um método abstrato é *opcional*.
 Se uma classe abstrata estende outra classe abstrata que possui um método
