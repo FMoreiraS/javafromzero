@@ -2,74 +2,100 @@ package intro;
 
 public class PrimitiveTypes {
     public static void main(String[] args) {
-        /* Os tipos primitivos são 8: int, double, float, char, byte, short, long, boolean.
+        /* TIPOS PRIMITIVOS
+         * São 8: int, double, float, char, byte, short, long, boolean.
          * Tipos primitivos são tipos que guardam em memória um valor simples.
          * São palavras reservadas.
-         * Para declara variável, é necessário digitar tipo, nome, =, um valor e ;. Ex.:
+         * Para declarar um dado, é necessário digitar tipo, nome, "=" e um
+         * valor. Ex.:
         */
-        int age = 18;
         int AgeAt2025 = 19;
-        /*Convenção: o nome da variável inicia com minúscula, mas, se for composto,
-         * demais elementos iniciam com maiúscula. Ex.:
+        /* Em Java, ponto e vírgula (semicolon) É OBRIGATÓRIO APÓS CADA
+         * LINHA DE INSTRUÇÃO.
+         * Convenção: o nome da variável inicia com minúscula, mas, se for
+         * composto, demais elementos iniciam com maiúscula. Ex.:
         */
         int beginningOfMaratona = 2101;
-        /* Não se usa " " para imprimir o valor da variável.
-         * Para concatenar valor de variável com texto, utiliza-se + entre eles, deixando espaço. Ex.:
+        /* Não se usa o nome da variável entre aspas para usar o valor dela.
+         * Para concatenar valor de variável com texto, utiliza-se "+"
+         * entre eles. Ex.:
         */
         System.out.println("O estudante completa "+AgeAt2025+" anos em 2025.");
-        /* Com exceção do boolean, que recebe valor de true ou false, todos os
-         * tipos assumem valores numéricos, ainda que char possa ser um caractere.
-         * A diferença está na quantidade aceita por cada tipo em uma variável.
-         * Existem tabelas com esses valores. Coloco os tipos em ordem,
-         * de acordo com quantos bits podem receber.
+        /* VALORES DOS TIPOS PRIMITIVOS
+         * Com exceção do boolean, que recebe apenas valor true ou false,
+         * todos os tipos assumem valores numéricos, ainda que char possa ser
+         * um caractere. A diferença está na quantidade de bits aceita e no
+         * tipo de valor.
+         * Existem tabelas com esses valores. Seguem exemplos dos tipos em
+         * ordem crescente de quantidade de bits aceita por cada um.
         */
-        byte smallNumber = 7;      //1 byte, 8 bits.
-        boolean reason = true;     //Same.
-        boolean feeling = false;   //Same.
-        short birthday = 31;       //2 bytes, 16 bits.
-        char userSex = 'M';        //Same.
-        int currentYear = 2025;    //4 bytes, 32 bits.
-        float savings = 19.5F;      //Same.
-        double decimal = 35600.49; //8 bytes, 64 bits.
-        long bigNumber = 1900500;  //Same.
-        /* int e long são utilizados para números inteiros, float e double para decimais.
-         * O valor de char é baseado na tabela ASCII, onde um número designa um caractere,
-         * mas também pode-se usar um Unicode, com contrabarra e u seguidos do número
-         * correspondente a cada caractere, tudo entre ''.
+        byte tinyInteger = 7;      // 1 byte, 8 bits.
+        boolean logicValue = true;     // 1 byte, 8 bits.
+        short smallInteger = 31;       // 2 bytes, 16 bits.
+        char anyCharacter = 'M';        // 2 bytes, 16 bits.
+        int integer = 2025;    // 4 bytes, 32 bits.
+        float smallDecimal = 19.5F;     // 4 bytes, 32 bits.
+        long bigInteger = 1900500;  // 8 bytes, 64 bits.
+        double bigDecimal = 35600.49; // 8 bytes, 64 bits.
+
+        /* USOS
+         * int e long: para números inteiros
+         * float e double: para decimais.
+         * O valor de char pode ser baseado na tabela ASCII, onde um número
+         * designa um caractere, mas também pode-se usar um valor Unicode, com
+         * contrabarra e u seguidos do número correspondente a cada caractere,
+         * sempre entre aspas simples.
         */
         char test = '\u0049';
         System.out.println(test);
-        /* Valores de variáveis podem ser identificados, como pertencentes a um tipo primitivo,
-         * convencionalmente com finando-o com inicial maiúscula. Isto é usado para o casting,
-         * que pode ser definido como o uso de um valor em um tipo primitivo que não o aceitaria
-         * normalmente, o que pode não funcionar como esperado. Para indicar à maquina que deseja-se
-         * realizar casting, o valor da var. deve ser antecedido do tipo que está sendo "forçado"
-         * e seguido da inicial do tipo a que pertence.
+        
+        /* CASTING
+        * É possível indicar o tipo primitivo ao qual um dado pertence pondo
+        * a inicial do tipo imediatamente após o valor, para evitar uma
+        * interpretação errada pelo compilador, pois existem tipos associados
+        * por padrão aos dados de acordo com o modo como são escritos.
+        * E existe também um modo de "forçar" o compilador a associar um dado
+        * a um tipo mesmo que o valor possa pertencer a outro tipo: trata-se
+        * do chamado "casting". Segue um exemplo onde usam-se ambos os
+        * recursos mencionados acima: um dado "salario" é declarado como um
+        * inteiro, mas o valor é escrito como um double e forçosamente
+        * interpretado como int pelo casting, de modo que o compilador
+        * desconsidera a parte decimal declarada.
         */
+
         int salario = (int) 2783.57D;
         System.out.println(salario);
-        // A máquina ignorou a parte decimal da var acima, porque a var é int, não double.
 
-        /* String: Não é de tipo primitivo, mas uma classe, que aceita um valor textual, e
-         * o uso de ASCII, Unicode, UTF.
+        /* Portanto, para realizar um casting, basta colocar o tipo desejado
+         * entre parênteses e antes do valor (ou objeto, como se verá depois).
+         * 
+         * STRING
+         * Não é de tipo primitivo, mas uma classe, que aceita um valor
+         * textual, assim como valores ASCII, Unicode e UTF.
          */
          String MsgUnicode = "\u0055\u006E\u0069\u0063\u006F\u0064\u0065";
         System.out.println(MsgUnicode);
 
-        /* Exercício: criar variáveis para os campos entre < > e imprimir a mensagem:
-         * Eu, <nome>, morando no endereço <endereço>, confirmo que recebi o salário de R$ <salário>,
-         * na data <data>.
+        /* Exercício: criar variáveis para os campos entre < > e imprimir
+         * a mensagem:
+         * Eu, <nome>, morando no endereço <endereço>, confirmo que recebi
+         * o salário de R$ <salário>, na data <data>.
         */
         String nome = "Imortal Pereira Silva";
         String endereço = "Rua 30 de Fevereiro, número 01, Bairro Utopia";
         float salary = 3567.89F;
         String data = "30 de agosto de 2025";
-        System.out.println("Eu, "+nome+", morando no endereço "+endereço+", confirmo que recebi o salário de R$ "+salary+", na data "+data+".");
-        /* O mestre William criou uma String para a mensagem, ao invés de colocar a
-         * mensagem no print.
+        System.out.println(
+            "Eu, " + nome +
+            ", morando no endereço "+ endereço +
+            ", confirmo que recebi o salário de R$ "+ salary +
+            ", na data "+ data +".");
+        /* DICA: William criou uma String para a mensagem, ao invés de
+         * colocar a mensagem no print:
          * String relatorio = "Eu...";
          * System.out.println(relatorio);
-         * Isso pode ser melhor, se a mensagem puder ou precisar ser utilizada novamente.
+         * Isso pode ser melhor, se a mensagem puder ou precisar ser
+         * utilizada novamente, ou simplesmente para melhorar a leitura.
         */
     }
 }
