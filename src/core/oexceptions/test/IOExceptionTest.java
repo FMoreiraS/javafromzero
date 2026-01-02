@@ -5,11 +5,11 @@ import java.io.IOException;
 
 public class IOExceptionTest {
     public static void main(String[] args) {
-        createNewFile("");
+        createNewFile("test");
     }
 
     private static void createNewFile(String name) {
-        File file = new File("test.txt");
+        File file = new File(name + ".txt");
         // Isso apenas prepara a criação dum arquivo, por um método próprio.
         // Como o método lança a checked exception IOException, só
         // podemos usá-lo dentro dum bloco try.
