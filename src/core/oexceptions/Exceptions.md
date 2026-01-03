@@ -104,7 +104,68 @@ circunstância: usar try e catch no método que lança a exceção, fazer no
 catch algo como um printStackTrace() e lançar a exceção capturada ou outra,
 para que fique a critério de quem chama o método dar (ou não) um tratamento
 adequado.  
+````
+private static void createNewFile(String name) throws IOException{
+    File file = new File(name + ".txt");
+    
+    try {
+        file.createNewFile();
+        System.out.println("Não ocorreu exceção.");
+    } catch (IOException e) {
+        e.printStackTrace();
+        throw e;
+        // O método responsabiliza-se por imprimir a stack trace, mas
+        // obriga quem o chamou a dar o tratamento propriamente dito.
+    }
+}
+````
 > [!Tip]
 > Qualquer que seja a solução escolhida escolhida por arquitetos ou pelo
 > time de desenvolvimento, convém manter um padrão em todo o projeto.
+## Bloco finally
+O bloco finally é um bloco de código complementar aos blocos try e catch,
+definido por **ser sempre executado**, acontecendo ou não uma exceção.
+Assim, finally pode ser usado para realizar alguma ação padrão em um método,
+que não pode depender da ocorrência ou não ocorrência de uma exceção. Se
+por exemplo um método faz uso de um recurso do SO, é preciso *abrir* o
+uso do recurso antes de usá-lo e sumamente importante *fechar* o recurso,
+para não ocupar a memória sustentando-o desnecessariamente.
+Note-se que o bloco try não pode ser usado só, mas não exige ser usado
+apenas em conjunto com catch: *é possível usar apenas try e finally*, embora
+seja incomum. Isso pode ser útil quando o método em construção não tem
+obrigação de tratar as possíveis exceções, mas apenas deixar que elas sejam
+lançadas a quem o chamou.  
+> [!Important]
+> O bloco finally fica abaixo dos blocos try e catch (quando este existe),
+> mas a sua execução em caso de lançamento de exceção *é sempre anterior à
+> exceção*, ou seja, o código dentro do finally será executado e só depois
+> a exceção será lançada, ao método imediatamente abaixo ou ao main,
+> interrompendo a execução (cf. FinallyTest).
 
+````
+private static void createFicticiousFile(String name){        
+    try {
+        System.out.println("Execução do try");
+        System.out.println("Abrindo recurso do SO...");
+        if (name.contains("-")) {
+            throw new IllegalArgumentException("O nome não pode ter \"-\"");
+        } 
+        System.out.printf("O arquivo %s.txt foi criado.\n", name);
+        System.out.println("Não ocorreu exceção.");
+    } catch (RuntimeException e) {
+        System.out.println("Execução do catch");
+        throw new RuntimeException("A exceção foi lançada.");
+    } finally {
+        System.out.println("Execução do finally.");
+        System.out.println("Fechando recurso...");
+    }
+}
+/* Se ocorrer uma exceção, a saída será:
+Execução do try
+Execução do catch
+Execução do finally.
+Exception in thread "main" java.lang.RuntimeException: A exceção foi lançada.
+        at core.oexceptions.test.FinallyTest.createFicticiousFile(FinallyTest.java:20)
+        at core.oexceptions.test.FinallyTest.main(FinallyTest.java:7)
+*/
+````
