@@ -169,3 +169,16 @@ Exception in thread "main" java.lang.RuntimeException: A exceção foi lançada.
         at core.oexceptions.test.FinallyTest.main(FinallyTest.java:7)
 */
 ````
+## Defesa contra múltiplas exceções
+É possível tratar mais de uma exceção no mesmo método, **usando diferentes
+blocos catch para cada exceção**. Uma vez que as exceções constituem uma
+cadeia de herança, *o polimorfismo é aplicável*, permitindo-nos capturar
+exceções específicas com tipos mais genéricos. Isso implica que, se
+usarmos um catch com um tipo de exceção mais genérico, a JVM não olhará
+nos demais blocos catch se existe algum tratando uma exceção de tipo igual
+ou mais próximo da que foi lançada, ou seja, **catches com tipos mais
+genéricos devem ficar por último**.  
+Também podemos indicar nas assinaturas de métodos mais de um tipo de
+exceção checada após o *throws*, separando-os com vírgula. Naturalmente,
+o método que chamar precisará ter blocos catch para cada exceção
+colocada na assinatura (ou para um supertipo comum).
