@@ -169,7 +169,8 @@ Exception in thread "main" java.lang.RuntimeException: A exceção foi lançada.
         at core.oexceptions.test.FinallyTest.main(FinallyTest.java:7)
 */
 ````
-## Defesa contra múltiplas exceções
+## Tratamento para múltiplas exceções
+### Múltiplos blocos catch
 É possível tratar mais de uma exceção no mesmo método, **usando diferentes
 blocos catch para cada exceção**. Uma vez que as exceções constituem uma
 cadeia de herança, *o polimorfismo é aplicável*, permitindo-nos capturar
@@ -182,3 +183,39 @@ Também podemos indicar nas assinaturas de métodos mais de um tipo de
 exceção checada após o *throws*, separando-os com vírgula. Naturalmente,
 o método que chamar precisará ter blocos catch para cada exceção
 colocada na assinatura (ou para um supertipo comum).
+````
+private static void throwAnyUncheckedException() {
+    try {
+        throw new RuntimeException();
+    } catch (IllegalArgumentException e) {
+        System.out.println("A exceção " + e.getClass() + " foi lançada.");
+    } catch (IndexOutOfBoundsException e) {
+        System.out.println("A exceção " + e.getClass() + " foi lançada.");
+    } catch (RuntimeException e) {
+        System.out.println("A exceção " + e.getClass() + " foi lançada.");
+    }
+}
+````
+### Catch com n exceções
+Outra forma de tratar várias exceções simultaneamente é **colocar várias
+exceções no mesmo bloco catch**, separadas por "|" (pipe). Existem duas
+importantes restrições:
+1. não podem coexistir no mesmo bloco uma exceção e sua subclasse (por exemplo, RuntimeException e OutOfBoundException), por tornar a subclasse inalcançável ou inútil;
+2. não é possível reatribuir o valor da variável de exceção (num catch com apenas uma exceção, isso é possível).
+````
+static void mayThrowException() {
+    try {
+        int test = 45 / 0;
+        System.out.println(test);
+    } catch (ArithmeticException | IllegalArgumentException e) {
+        System.out.println("Ocorreu uma exceção do tipo " +
+                e.getClass().getName());
+    } catch (RuntimeException e) {
+        System.out.println("Foi lançada uma RuntimeException.");
+        // Note-se como é possível reatribuir o valor de "e".
+        e = new IndexOutOfBoundsException();
+    }
+}
+````
+Naturalmente, só faz sentido usar várias exceções num mesmo catch se for
+possível ou necessário dar o mesmo tratamento a todas.
