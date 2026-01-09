@@ -219,3 +219,40 @@ static void mayThrowException() {
 ````
 Naturalmente, só faz sentido usar várias exceções num mesmo catch se for
 possível ou necessário dar o mesmo tratamento a todas.
+## Try with resources
+Existem situações em que o uso de try e catch ou finally gera um código
+visualmente desagradável, dificilmente legível, pela necessidade de tratar
+exceções dentro dos blocos catch ou finally. No exemplo, um método chamado no
+finally obriga o uso de try e catch ali porque pode lançar a IOException.
+````
+static void testTry() {
+    Reader reader = null;
+    // É preciso criar aqui para ser acessível no try dentro do finally.
+    try {
+        reader = new BufferedReader(new FileReader("test.txt"));
+    } catch (IOException e) {
+        e.printStackTrace();
+    } finally {
+        try {
+            reader.close();
+        } catch (IOException e) {
+            System.out.println("close() gerou exceção.");
+        }
+    }
+}
+````
+O try com recursos é uma alternativa própria para situações de uso de recursos
+do SO, que fecha automaticamente o recurso usado. Basta colocar entre parênteses
+após a palavra "try" os recursos necessários.  
+Existem duas particularidades notáveis no uso do try with resources:
+1. o recurso **precisa implementar "java.io.Closable" ou "java.lang.AutoClosable"**, pois são as únicas interfaces com o método close().
+2. **é possível substituir catch ou finally por "throws"** seguida do tipo da exceção adequada, na assinatura do método.
+3. **a ordem de fechamento dos recursos é inversa**, ou seja, são fechados antes os criados por último.
+````
+static void testTryWithResources() {
+    try (Reader reader = new BufferedReader(new FileReader("test.txt"));) {
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+````
