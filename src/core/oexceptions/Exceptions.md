@@ -43,7 +43,7 @@ Se uma exceção é lançada, qualquer código em linhas que possam existir abai
 no bloco try são desprezadas, a execução continua no bloco catch e não
 retorna ao try, ou seja, as linhas depois da originária da exceção são
 perdidas. Quando ocorre uma exceção e não há blocos try e catch no local
-de origem, a execução desce na pilha (stack) até que seja dado um tratamento
+de origem, a exceção desce na pilha (stack) até que seja dado um tratamento
 ou, caso não exista um, o método main interrompa a execução, se a exceção
 for do tipo unchecked.  
 > [!Important]
@@ -88,8 +88,8 @@ private static int divideTwoNumbers(int num1, int num2) {
 > que o método que lançou a exceção esteja num bloco try.
 
 ### checked
-Métodos com potenciais lançamentos de exceções checadas têm na assinatura a
-palavra *throws* (cf. `java.io.File.createNewFile()`). Essa indicação
+Métodos que podem lançar exceções checadas **devem ter na assinatura a
+palavra throws** (cf. `java.io.File.createNewFile()`). Essa indicação
 **delega a responsabilidade** ao método que chamou, obrigando apenas este
 (ou um outro método chamador e assim sucessivamente) a tratar a exceção com
 try e catch.  
@@ -254,5 +254,27 @@ static void testTryWithResources() {
     } catch (IOException e) {
         e.printStackTrace();
     }
+}
+````
+## Customized exceptions
+É possível criar *exceções personalizadas* ao projeto em que se está trabalhando,
+apenas *estendendo* exceções existentes, caso não exista uma adequada entre as
+oferecidas pela linguagem (são mais de 400, vale ler a documentação). Confirmada
+a necessidade, cria-se uma classe (preferencialmente com nome terminado em
+"Exception") que estenda Exception, se for uma exceção checada, ou
+RuntimeException, se for não checada, ou uma subclasse de qualquer uma delas
+(o que dificilmente seria necessário).
+````
+public class InvalidDenominatorException extends ArithmeticException {
+
+    public InvalidDenominatorException() {
+        super("O denominador usado é inválido.");
+        // O construtor padrão pode ter uma mensagem genérica
+    }
+
+    public InvalidDenominatorException(String message) {
+        super(message);
+    }
+
 }
 ````
