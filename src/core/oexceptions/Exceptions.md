@@ -265,16 +265,19 @@ a necessidade, cria-se uma classe (preferencialmente com nome terminado em
 RuntimeException, se for não checada, ou uma subclasse de qualquer uma delas
 (o que dificilmente seria necessário).
 ````
-public class InvalidDenominatorException extends ArithmeticException {
+package core.oexceptions.domain;
 
-    public InvalidDenominatorException() {
-        super("O denominador usado é inválido.");
+public class UserRegistrationException extends Exception {
+
+    public UserRegistrationException() {
+        super("O nome de usuário ou a senha é inválida.");
         // O construtor padrão pode ter uma mensagem genérica
     }
 
-    public InvalidDenominatorException(String message) {
+    public UserRegistrationException(String message) {
         super(message);
     }
 
 }
 ````
+Para vê-la em ação, executa CustomizedExceptionTest.
