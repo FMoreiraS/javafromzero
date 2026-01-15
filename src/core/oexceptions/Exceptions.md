@@ -281,3 +281,30 @@ public class UserRegistrationException extends Exception {
 }
 ````
 Para vê-la em ação, executa CustomizedExceptionTest.
+## Sobrescrita e exceções
+A sobrescrita de métodos que podem lançar exceções **não obriga o lançamento
+e o tratamento das mesmas exceções**. O método que sobrescreve pode não lançar
+exceção alguma, bem como pode lançar apenas parte das exceções declaradas no
+método original ou exceções de não checadas de qualquer tipo. Contudo, é
+**proibido lançar exceções checadas mais genéricas** que as declaradas no método
+original. O exemplo mostra uma sobrescrita onde opta-se por lançar uma das exceções
+presentes no método original e uma não checada qualquer.
+````
+public class User {
+
+    public void createAccount() throws UserRegistrationException, IOException {
+        System.out.println("Conta de usuário criada.");
+    }
+
+}
+
+...
+
+public class Employee extends User {
+
+    public void createAccount() throws UserRegistrationException, InputMismatchException {
+        System.out.println("Conta de funcionário criada.");
+    }
+
+}
+````
