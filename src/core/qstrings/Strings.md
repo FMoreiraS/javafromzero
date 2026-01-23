@@ -1,0 +1,55 @@
+# Strings
+## Natureza imutável das strings
+Strings, como sabemos, são classes dedicadas a guardar valores literais, sem a
+restrição de tamanho do tipo primitivo char. As strings são criadas em Java
+numa região da heap ("monte", "pilha") chamada "string constant pool" ("tanque/
+piscina constante de strings). A declaração típica de strings,
+`String name = "Alexander";`, cria um valor nesse "tanque" de memória. Essas
+**strings são imutáveis**, não podem ser redeclaradas.  
+Façamos algumas constatações práticas.
+1. Declarar várias strings como o mesmo valor e compará-las com `==`[^1]
+    retorna-nos valor lógico **verdadeiro**, porque **não são criadas strings
+    idênticas**[^2].
+2. Em consequência dessa imutabilidade, usar um método que alterasse o valor de
+   uma string, como `concat()`, usando uma string já declarada mas sem fazer
+   uma declaração, ocasionaria a **criação de uma string sem variável de
+   referência**.
+3. Usar o construtor da classe String[^3] **cria objetos fora do pool de strings**,
+    causando distinção entre strings com valores idênticos.
+
+[^1]: Usar `equals()` compara o conteúdo, `==` verifica se as strings
+    referenciam o mesmo valor, por isso o operador é incomum com strings.
+[^2]: Segue o conceito de ciência da computação chamado "string interning".
+[^3]: É incomum, e a manutenção do pool desencoraja isso.
+
+````java
+String name1 = "Maximus";
+String name2 = "Maximus";
+System.out.println(name1 == name2); // true
+
+name1.concat(" Augustus");
+// Cria " Augustus" e "Maximus Augustus", duas strings inacessíveis!
+System.out.println(name1); // Apenas "Maximus"
+// Para mudar o valor referenciado por name1, é preciso atribuir o novo valor
+// a essa variável de referência, mas o valor original não será alterado.
+name1 = name1.concat(" Augustus");
+System.out.println(name1); // Agora é "Maximus Augustus"
+
+String name3 = new String("Maximus");
+System.out.println(name2 == name3.intern()); // intern() funciona como get
+// Assim comparamos os valores de strings de dentro e de fora do pool
+````
+## Métodos notáveis
+Existem muitos métodos úteis na classe String, podemos citar alguns frequentes.
+- length: retorna o tamanho do objeto string, o número de caracteres, similar
+    atributo length dos arrays;
+- charAt: retorna o caractere no índice passado como parâmetro;
+- replace: substitui na string todas as ocorrências da primeira sequência de
+    caracteres pela segunda;
+- substring: retorna uma subdivisão duma string, indo do primeiro índice
+    até antes do segundo, ou até o final, se houver só um argumento.
+- toUpperCase e toLowerCase: transformam todos as letras presentes em maiúsculas
+    e minúsculas, respectivamente.
+- trim: retorna uma string sem espaços em branco que existam no início e no fim
+    (útil para controlar as respostas do usuário que vão para o banco de dados,
+    como toUpperCase e toLowerCase).
