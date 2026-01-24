@@ -2,6 +2,10 @@ package core.aintroclasses.test;
 
 import core.aintroclasses.domain.Car;
 
+// Exercício:
+// Criar uma classe carro com os atributos: nome, modelo, ano;
+// em seguida, criar dois objetos distintos e imprimir seus valores.
+
 public class CarTest {
     public static void main(String[] args) {
         Car skylineR34 = new Car();
