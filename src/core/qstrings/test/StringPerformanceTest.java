@@ -2,29 +2,50 @@ package core.qstrings.test;
 
 public class StringPerformanceTest {
     public static void main(String[] args) {
-        // Teste com String
+
+        System.out.println("--------TESTE COM STRING--------");
+
+        int numberOfOperations = 100000;
         long startOfExecution = System.currentTimeMillis();
-        
-        concatString(10_000);
-        
+        concatString(numberOfOperations);
         long timeOfExecution = System.currentTimeMillis() - startOfExecution;
-        System.out.println("Tempo de execução com String: " + timeOfExecution + " ms");
         
-        // Teste com StringBuilder
+        System.out.printf("Tempo de execução com %d operações: %d ms\n", numberOfOperations, timeOfExecution);
+        double opsPerMilisec = 100D / timeOfExecution;
+        System.out.println("Operações por milissegundo: " + opsPerMilisec);
+        System.out.println("Operações por segundo: " + (opsPerMilisec * 1000));
+        System.out.println("--------------------------------");
+        
+        System.out.println("-----TESTE COM STRINGBUILDER-----");
+        
+        // numberOfOperations = 100_000;
         startOfExecution = System.currentTimeMillis();
-        
         concatStringBuilder(100_000);
-        
         timeOfExecution = System.currentTimeMillis() - startOfExecution;
-        System.out.println("Tempo de execução com StringBuilder: " + timeOfExecution + " ms");
         
-        // Teste com StringBuffer
+        // System.out.println("Tempo de execução: " + timeOfExecution + " ms");
+        System.out.printf("Tempo de execução com %d operações: %d ms\n", numberOfOperations, timeOfExecution);
+        opsPerMilisec = 100_000D / timeOfExecution;
+        System.out.println("Operações por milissegundo: " + opsPerMilisec);
+        System.out.println("Operações por segundo: " + (opsPerMilisec * 1000));
+        System.out.println("Operações por segundo: " + ((long)opsPerMilisec * 1000));
+        System.out.println("--------------------------------");
+        
+        
+        System.out.println("-----TESTE COM STRINGBUFFER-----");
+        
+        // numberOfOperations = 100_000;
         startOfExecution = System.currentTimeMillis();
-
-        concatStringBuffer(100_000);
-
+        concatStringBuilder(100_000);
         timeOfExecution = System.currentTimeMillis() - startOfExecution;
-        System.out.println("Tempo de execução com StringBuffer: " + timeOfExecution + " ms");
+        
+        // System.out.println("Tempo de execução: " + timeOfExecution + " ms");
+        System.out.printf("Tempo de execução com %d operações: %d ms\n", numberOfOperations, timeOfExecution);
+        opsPerMilisec = 100_000D / timeOfExecution;
+        System.out.println("Operações por milissegundo: " + opsPerMilisec);
+        System.out.println("Operações por segundo: " + (opsPerMilisec * 1000));
+        System.out.println("Operações por segundo: " + ((long)opsPerMilisec * 1000));
+        // System.out.println("--------------------------------");
 
 
     }
@@ -52,5 +73,4 @@ public class StringPerformanceTest {
             // System.out.println(stringBuffer);
         }
     }
-
 }
