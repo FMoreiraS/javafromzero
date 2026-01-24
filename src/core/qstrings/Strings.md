@@ -53,3 +53,56 @@ Existem muitos métodos úteis na classe String, podemos citar alguns frequentes
 - trim: retorna uma string sem espaços em branco que existam no início e no fim
     (útil para controlar as respostas do usuário que vão para o banco de dados,
     como toUpperCase e toLowerCase).
+## Desempenho com strings
+Os objetos da classe String são a representação do texto do mundo real para o
+domínio computacional (é a justificativa para toda a orientação a objetos).
+Usamos strings para todas as informações literais necessárias aos objetos que
+criamos. Contudo, a classe String pode deixar as respostas do sistema lentas em
+certas situações.  
+Suponhamos que um certo método de um sistema qualquer precise fazer muitas
+operações de alteração de objetos strings (não os valores em si, imutáveis).
+Podemos calcular o tempo de execução desse método, e comparar o tempo gasto de
+acordo com o número de repetições da mesma tarefa (v. StringPerformanceTest).
+````java
+static void concatString(int length) {
+    String generatedString = "";
+    for (int i = 0; i < length; i++) {
+        generatedString += i;
+        // Adiciona o número ao fim da string a cada iteração.
+    }
+}
+````
+Consideremos os resultados de dois testes, executados separadamente, fazendo 100
+e 100.000 dessss operações simples usando String.
+1. 100 operações
+    - Tempo de execução: 23 ms
+    - Operações por milissegundo: 4.3478260869565215
+    - Operações por segundo: 4347.826086956521
+2. 100000 operações
+    - Tempo de execução: 4356 ms
+    - Operações por milissegundo: 0.02295684113865932
+    - Operações por segundo: 22.956841138659318
+
+Com poucas operações, o tempo é de alguns milissegundos (insignificante a nós),
+mas aumenta consideravelmente quando são realizadas muitas operações. Isso é um
+grande problema para um servidor com muitas demandas. Por isso foram desenvolvidas
+duas classes mais eficientes para operações com strings: `StringBuilder` e
+`StringBuffer`. Os testes mencionados acima foram realizados como o início de
+uma sequência, foram seguidos de testes do mesmo método, mas com a substituição
+da classe String por StringBuilder e StringBuffer, respectivamente. Comparemos
+todos os resultados.
+
+|    Classe     | No. de ops. | Tempo de execução | Ops. por milissegundo |   Ops. por segundo    |
+| ------------- | ----------- | ----------------- | --------------------- | --------------------- |
+| String        |         100 |             23 ms |    4,3478260869565215 |     4347,826086956521 |
+| StringBuilder |         100 |              8 ms |                12.500 |            12.500.000 |
+| StringBuffer  |         100 |              2 ms |                50.000 |            50.000.000 |
+| ------------- | ----------- | ----------------- | --------------------- | --------------------- |
+| String        |     100.000 |           4356 ms |   0,02295684113865932 |    22,956841138659318 |
+| StringBuilder |     100.000 |              4 ms |                25.000 |            25.000.000 |
+| StringBuffer  |     100.000 |              3 ms |   33.333,333333333336 |            33.333.000 |
+
+> Observações:
+> 1. Onde há "ops.", entenda-se "operações".
+> 2. Na coluna "Ops. por segundo", omitem-se os decimais das linhas referentes a
+>    StringBuilder e a StringBuffer, para melhor leitura.
