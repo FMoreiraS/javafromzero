@@ -72,16 +72,6 @@ static void concatString(int length) {
     }
 }
 ````
-Consideremos os resultados de dois testes, executados separadamente, fazendo 100
-e 100.000 dessss operações simples usando String.
-1. 100 operações
-    - Tempo de execução: 23 ms
-    - Operações por milissegundo: 4.3478260869565215
-    - Operações por segundo: 4347.826086956521
-2. 100000 operações
-    - Tempo de execução: 4356 ms
-    - Operações por milissegundo: 0.02295684113865932
-    - Operações por segundo: 22.956841138659318
 
 Com poucas operações, o tempo é de alguns milissegundos (insignificante a nós),
 mas aumenta consideravelmente quando são realizadas muitas operações. Isso é um
@@ -92,17 +82,46 @@ uma sequência, foram seguidos de testes do mesmo método, mas com a substituiç
 da classe String por StringBuilder e StringBuffer, respectivamente. Comparemos
 todos os resultados.
 
-|    Classe     | No. de ops. | Tempo de execução | Ops. por milissegundo |   Ops. por segundo    |
-| ------------- | ----------- | ----------------- | --------------------- | --------------------- |
-| String        |         100 |             23 ms |    4,3478260869565215 |     4347,826086956521 |
-| StringBuilder |         100 |              8 ms |                12.500 |            12.500.000 |
-| StringBuffer  |         100 |              2 ms |                50.000 |            50.000.000 |
-| ------------- | ----------- | ----------------- | --------------------- | --------------------- |
-| String        |     100.000 |           4356 ms |   0,02295684113865932 |    22,956841138659318 |
-| StringBuilder |     100.000 |              4 ms |                25.000 |            25.000.000 |
-| StringBuffer  |     100.000 |              3 ms |   33.333,333333333336 |            33.333.000 |
+| No. de ops. |    Classe     | Tempo de execução | Ops. por milissegundo |   Ops. por segundo    |
+| :---------: | :-----------: | ----------------: | --------------------: | --------------------: |
+|             | String        |             23 ms |    4,3478260869565215 |     4347,826086956521 |
+|         100 | StringBuilder |              8 ms |                12.500 |            12.500.000 |
+|             | StringBuffer  |              2 ms |                50.000 |            50.000.000 |
+| ----------- | ------------- | ----------------- | --------------------- | --------------------- |
+|             | String        |           4356 ms |   0,02295684113865932 |    22,956841138659318 |
+|     100.000 | StringBuilder |              4 ms |                25.000 |            25.000.000 |
+|             | StringBuffer  |              3 ms |   33.333,333333333336 |            33.333.000 |
 
 > Observações:
 > 1. Onde há "ops.", entenda-se "operações".
 > 2. Na coluna "Ops. por segundo", omitem-se os decimais das linhas referentes a
 >    StringBuilder e a StringBuffer, para melhor leitura.
+
+
+<table>
+    <th>
+        <td>No. de ops.</td>
+        <td>Classe</td>
+        <td>Tempo de execução</td>
+        <td>Ops. por milissegundo</td>
+        <td>Ops. por segundo</td>
+    </th>
+    <tr>
+        <td rowspan="3"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+    <tr>
+        <td rowspan="3"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
