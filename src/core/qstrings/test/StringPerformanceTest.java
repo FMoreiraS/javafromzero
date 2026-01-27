@@ -1,16 +1,102 @@
 package core.qstrings.test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StringPerformanceTest {
     public static void main(String[] args) {
+        
+        int numberOfOperations = 100;
+        int numberOfIterations = 10;
+        List<Long> executionTimes = testConcatString(numberOfOperations, numberOfIterations);
+        Long[] executionTimesArray = executionTimes.toArray(new Long[numberOfIterations]);
+        double averageOpsPerMs = calcAverageOpsPerMs(executionTimesArray, numberOfOperations);
+        
+        System.out.println("--------TESTE COM STRING--------");
+        System.out.printf(
+            "Tempos de execução (ms) de %d operações em %d tentativas:\n\t %s\n" +
+            "Ops. per ms: %f\n" +
+            "Ops. per second: %f\n",
+            numberOfOperations, numberOfIterations,
+            executionTimes.toString(),
+            averageOpsPerMs,
+            averageOpsPerMs * 1000
+        );
+
+        System.out.println("-----TESTE COM STRINGBUILDER-----");
+        executionTimes = testConcatStringBuilder(numberOfOperations, numberOfIterations);
+        averageOpsPerMs = calcAverageOpsPerMs(executionTimes.toArray(executionTimesArray), numberOfOperations);
+        System.out.printf(
+            "Tempos de execução (ms) de %d operações em %d tentativas:\n\t %s\n" +
+            "Ops. per ms: %f\n" +
+            "Ops. per second: %f\n",
+            numberOfOperations, numberOfIterations,
+            executionTimes.toString(),
+            averageOpsPerMs,
+            averageOpsPerMs * 1000
+        );
+
+        System.out.println("-----TESTE COM STRINGBUFFER-----");
+        executionTimes = testConcatStringBuffer(numberOfOperations, numberOfIterations);
+        averageOpsPerMs = calcAverageOpsPerMs(executionTimes.toArray(executionTimesArray), numberOfOperations);
+        System.out.printf(
+            "Tempos de execução (ms) de %d operações em %d tentativas:\n\t %s\n" +
+            "Ops. per ms: %f\n" +
+            "Ops. per second: %f\n",
+            numberOfOperations, numberOfIterations,
+            executionTimes.toString(),
+            averageOpsPerMs,
+            averageOpsPerMs * 1000
+        );
 
         System.out.println("--------TESTE COM STRING--------");
+        numberOfOperations = 100_000;
+        System.out.printf(
+            "Tempos de execução (ms) de %d operações em %d tentativas:\n\t %s\n" +
+            "Ops. per ms: %f\n" +
+            "Ops. per second: %f\n",
+            numberOfOperations, numberOfIterations,
+            executionTimes.toString(),
+            averageOpsPerMs,
+            averageOpsPerMs * 1000
+        );
 
+        System.out.println("-----TESTE COM STRINGBUILDER-----");
+        executionTimes = testConcatStringBuilder(numberOfOperations, numberOfIterations);
+        averageOpsPerMs = calcAverageOpsPerMs(executionTimes.toArray(executionTimesArray), numberOfOperations);
+        System.out.printf(
+            "Tempos de execução (ms) de %d operações em %d tentativas:\n\t %s\n" +
+            "Ops. per ms: %f\n" +
+            "Ops. per second: %f\n",
+            numberOfOperations, numberOfIterations,
+            executionTimes.toString(),
+            averageOpsPerMs,
+            averageOpsPerMs * 1000
+        );
+
+        System.out.println("-----TESTE COM STRINGBUFFER-----");
+        executionTimes = testConcatStringBuffer(numberOfOperations, numberOfIterations);
+        averageOpsPerMs = calcAverageOpsPerMs(executionTimes.toArray(executionTimesArray), numberOfOperations);
+        System.out.printf(
+            "Tempos de execução (ms) de %d operações em %d tentativas:\n\t %s\n" +
+            "Ops. per ms: %f\n" +
+            "Ops. per second: %f\n",
+            numberOfOperations, numberOfIterations,
+            executionTimes.toString(),
+            averageOpsPerMs,
+            averageOpsPerMs * 1000
+        );
+
+        /*
+        Testes originais
+        System.out.println("--------TESTE COM STRING--------");
+        
         int numberOfOperations = 100000;
         long startOfExecution = System.currentTimeMillis();
         concatString(numberOfOperations);
         long timeOfExecution = System.currentTimeMillis() - startOfExecution;
         
-        System.out.printf("Tempo de execução com %d operações: %d ms\n", numberOfOperations, timeOfExecution);
+        System.out.printf("Tempo de execução (ms) com %d operações: %d ms\n", numberOfOperations, timeOfExecution);
         double opsPerMilisec = 100D / timeOfExecution;
         System.out.println("Operações por milissegundo: " + opsPerMilisec);
         System.out.println("Operações por segundo: " + (opsPerMilisec * 1000));
@@ -23,8 +109,8 @@ public class StringPerformanceTest {
         concatStringBuilder(100_000);
         timeOfExecution = System.currentTimeMillis() - startOfExecution;
         
-        // System.out.println("Tempo de execução: " + timeOfExecution + " ms");
-        System.out.printf("Tempo de execução com %d operações: %d ms\n", numberOfOperations, timeOfExecution);
+        // System.out.println("Tempo de execução (ms): " + timeOfExecution + " ms");
+        System.out.printf("Tempo de execução (ms) com %d operações: %d ms\n", numberOfOperations, timeOfExecution);
         opsPerMilisec = 100_000D / timeOfExecution;
         System.out.println("Operações por milissegundo: " + opsPerMilisec);
         System.out.println("Operações por segundo: " + (opsPerMilisec * 1000));
@@ -39,14 +125,15 @@ public class StringPerformanceTest {
         concatStringBuilder(100_000);
         timeOfExecution = System.currentTimeMillis() - startOfExecution;
         
-        // System.out.println("Tempo de execução: " + timeOfExecution + " ms");
-        System.out.printf("Tempo de execução com %d operações: %d ms\n", numberOfOperations, timeOfExecution);
+        // System.out.println("Tempo de execução (ms): " + timeOfExecution + " ms");
+        System.out.printf("Tempo de execução (ms) com %d operações: %d ms\n", numberOfOperations, timeOfExecution);
         opsPerMilisec = 100_000D / timeOfExecution;
         System.out.println("Operações por milissegundo: " + opsPerMilisec);
         System.out.println("Operações por segundo: " + (opsPerMilisec * 1000));
         System.out.println("Operações por segundo: " + ((long)opsPerMilisec * 1000));
         // System.out.println("--------------------------------");
-
+        
+        */
 
     }
 
@@ -73,4 +160,59 @@ public class StringPerformanceTest {
             // System.out.println(stringBuffer);
         }
     }
+
+    static ArrayList<Long> testConcatString(int operations, int iterations) {
+        long startOfExecution;
+        ArrayList<Long> executionTimes = new ArrayList<Long>();
+        long timeOfExecution;
+
+        for (int i = iterations; i > 0; i--) {
+            startOfExecution = System.currentTimeMillis();
+            concatString(operations);
+            timeOfExecution = System.currentTimeMillis() - startOfExecution;
+            executionTimes.add(timeOfExecution);
+        }
+        return executionTimes;
+    }
+
+    static ArrayList<Long> testConcatStringBuilder(int operations, int iterations) {
+        long startOfExecution;
+        ArrayList<Long> executionTimes = new ArrayList<Long>();
+        long timeOfExecution;
+
+        for (int i = iterations; i > 0; i--) {
+            startOfExecution = System.currentTimeMillis();
+            concatStringBuilder(operations);
+            timeOfExecution = System.currentTimeMillis() - startOfExecution;
+            executionTimes.add(timeOfExecution);
+        }
+        return executionTimes;
+    }
+
+    static ArrayList<Long> testConcatStringBuffer(int operations, int iterations) {
+        long startOfExecution;
+        ArrayList<Long> executionTimes = new ArrayList<Long>();
+        long timeOfExecution;
+
+        for (int i = iterations; i > 0; i--) {
+            startOfExecution = System.currentTimeMillis();
+            concatStringBuffer(operations);
+            timeOfExecution = System.currentTimeMillis() - startOfExecution;
+            executionTimes.add(timeOfExecution);
+        }
+        return executionTimes;
+    }
+
+    static double calcAverageOpsPerMs(Long[] dataArray, int operations) {
+        double sum = 0;
+        
+        for (int i = 0; i < dataArray.length; i++) {
+            double numberOfOps = operations / (double) dataArray[i];
+            sum += numberOfOps;
+        }
+
+        return sum / dataArray.length;
+    }
+    // static void testConcatString
+    // static void testConcatString
 }
