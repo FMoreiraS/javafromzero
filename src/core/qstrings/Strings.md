@@ -72,7 +72,6 @@ static void concatString(int length) {
     }
 }
 ````
-
 Com poucas operações, o tempo é de alguns milissegundos (insignificante a nós),
 mas aumenta consideravelmente quando são realizadas muitas operações. Isso é um
 grande problema para um servidor com muitas demandas. Por isso foram desenvolvidas
@@ -82,18 +81,21 @@ uma sequência, foram seguidos de testes do mesmo método, mas com a substituiç
 da classe String por StringBuilder e StringBuffer, respectivamente. Comparemos
 todos os resultados.
 
-| No. de ops. |    Classe     | Tempo de execução | Ops. por milissegundo |   Ops. por segundo    |
-| :---------: | :-----------: | ----------------: | --------------------: | --------------------: |
-|         100 | String        |             23 ms |    4,3478260869565215 |     4347,826086956521 |
-|         100 | StringBuilder |              8 ms |                12.500 |            12.500.000 |
-|         100 | StringBuffer  |              2 ms |                50.000 |            50.000.000 |
-| ----------- | ------------- | ----------------- | --------------------- | --------------------- |
-|     100.000 | String        |           4356 ms |   0,02295684113865932 |    22,956841138659318 |
-|     100.000 | StringBuilder |              4 ms |                25.000 |            25.000.000 |
-|     100.000 | StringBuffer  |              3 ms |   33.333,333333333336 |            33.333.000 |
+| No. de ops. |    Classe     | Tempo médio | Ops. por ms | Ops. por segundo |
+| :---------: | :-----------: | ----------: | ----------: | ---------------: |
+|      10.000 | String        |       37 ms |       308,2 |         308200.6 |
+|      10.000 | StringBuilder |      0,5 ms |  Indefinido |       Indefinido |
+|      10.000 | StringBuffer  |      0,5 ms |  Indefinido |       Indefinido |
+| ----------- | ------------- | ----------- | ----------- | ---------------- |
+|     100.000 | String        |   2997,1 ms |        33,4 |          33371,3 |
+|     100.000 | StringBuilder |      1,9 ms |      67.000 |       67.000.000 |
+|     100.000 | StringBuffer  |        2 ms |     65333,3 |     65.333.333,3 |
 
 > Observações:
 > 1. Onde há "ops.", entenda-se "operações".
-> 2. Na coluna "Ops. por segundo", omitem-se os decimais das linhas referentes a
->    StringBuilder e a StringBuffer, para melhor leitura.
+> 2. Nas colunas de operações por milissegundo e por segundo os valores são
+>   arredondados para melhorar a leitura.
 
+Nota-se que o desempenho de StringBuilder e o de StringBuffer são muito
+similares. Os métodos são os mesmos, mas StringBuffer foi desenvolvida
+especificamente para a *concorrência* (assunto futuro).
