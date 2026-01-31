@@ -102,15 +102,32 @@ especificamente para a *concorrência* (assunto futuro).
 
 ## StringBuilder e StringBuffer
 ### Diferença de instanciação
-Foi dito que a classe String cria no String Pool por padrão um novo valor
-literal toda vez que o objeto é alterado. StringBuilder e StringBuffer, ao
-contrário, criam apenas uma string em memória (não no pool): **sempre que for
-alterado o valor, deixa de existir o anterior**. Isso contorna os possíveis
+Podemos criar strings simplemente igualando o objeto a um valor entre aspas
+duplas, mas com StringBuilder e StringBuffer é obrigatório usar o construtor,
+essas classes não assumem uma sequência entre aspas isolada como valor, e se
+não forem passados argumentos para o construtor, este criará um objeto com
+capacidade igual a 16 caracteres, mas sem um valor literal. Sendo String e
+StringBuilder objetos diferentes, é impossível igualar numa declaração objetos
+dessas classes.  
+Além disso, foi dito que a classe String cria no String Pool por padrão um novo
+valor literal toda vez que o objeto é alterado. StringBuilder e StringBuffer,
+ao contrário, criam apenas uma string em memória (não no pool): **sempre que
+for alterado o valor, deixa de existir o anterior**. Isso contorna os possíveis
 problemas com a imutabilidade das strings.  
+````java
+String text = "example";
+StringBuilder builder = new StringBuilder("value");
+````
 ### Métodos
 StringBuilder e StringBuffer têm métodos que fazem quase as mesmas coisas que
 se pode fazer com strings. Um método comum, por exemplo, é o `substring()`, que
 também só altera os valores se houver uma declaração. É uma exceção, pois os
 métodos **retornam objetos StringBuilder/StringBuffer**, assim as declarações
 tornam-se desnecessárias, o valor literal é atualizado pela *substituição do
-objeto**.
+objeto**. Alguns métodos importantes são:
+1. append(): equivale a `+=` ou concat(), é o único meio de acrescentar
+    caracteres no fim do valor armazenado, e aceita qualquer tipo de dado.
+2. insert(): é o que permite adicionar caracteres em uma posição específica do
+    valor atual, com o auxílio de um índice como 1º argumento.
+3. delete(): permite excluir caracteres no intervalo dado, com *intervalo final
+    exclusivo*.
