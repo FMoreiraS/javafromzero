@@ -99,3 +99,18 @@ todos os resultados.
 Nota-se que o desempenho de StringBuilder e o de StringBuffer são muito
 similares. Os métodos são os mesmos, mas StringBuffer foi desenvolvida
 especificamente para a *concorrência* (assunto futuro).
+
+## StringBuilder e StringBuffer
+### Diferença de instanciação
+Foi dito que a classe String cria no String Pool por padrão um novo valor
+literal toda vez que o objeto é alterado. StringBuilder e StringBuffer, ao
+contrário, criam apenas uma string em memória (não no pool): **sempre que for
+alterado o valor, deixa de existir o anterior**. Isso contorna os possíveis
+problemas com a imutabilidade das strings.  
+### Métodos
+StringBuilder e StringBuffer têm métodos que fazem quase as mesmas coisas que
+se pode fazer com strings. Um método comum, por exemplo, é o `substring()`, que
+também só altera os valores se houver uma declaração. É uma exceção, pois os
+métodos **retornam objetos StringBuilder/StringBuffer**, assim as declarações
+tornam-se desnecessárias, o valor literal é atualizado pela *substituição do
+objeto**.
