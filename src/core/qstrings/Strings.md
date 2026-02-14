@@ -46,8 +46,9 @@ Existem muitos métodos úteis na classe String, podemos citar alguns frequentes
 - charAt: retorna o caractere no índice passado como parâmetro;
 - replace: substitui na string todas as ocorrências da primeira sequência de
     caracteres pela segunda;
-- substring: retorna uma subdivisão duma string, indo do primeiro índice
-    até antes do segundo, ou até o final, se houver só um argumento.
+- substring: retorna uma subdivisão duma string, usando um argumento como índice
+    inicial e outro como **índice final exclusivo**, ou todos os chars a partir
+    de um índice, se houver só um argumento.
 - toUpperCase e toLowerCase: transformam todos as letras presentes em maiúsculas
     e minúsculas, respectivamente.
 - trim: retorna uma string sem espaços em branco que existam no início e no fim
@@ -107,9 +108,8 @@ duplas, mas com StringBuilder e StringBuffer é obrigatório usar o construtor,
 essas classes não assumem uma sequência entre aspas isolada como valor, e se
 não forem passados argumentos para o construtor, este criará um objeto com
 capacidade igual a 16 caracteres, mas sem um valor literal. Sendo String e
-StringBuilder objetos diferentes, é impossível igualar numa declaração objetos
-dessas classes.  
-Além disso, foi dito que a classe String cria no String Pool por padrão um novo
+StringBuilder objetos diferentes, é impossível igualar objetos dessas classes.  
+Além disso, foi dito que a classe String cria por padrão no String Pool um novo
 valor literal toda vez que o objeto é alterado. StringBuilder e StringBuffer,
 ao contrário, criam apenas uma string em memória (não no pool): **sempre que
 for alterado o valor, deixa de existir o anterior**. Isso contorna os possíveis
@@ -125,9 +125,10 @@ também só altera os valores se houver uma declaração. É uma exceção, pois
 métodos **retornam objetos StringBuilder/StringBuffer**, assim as declarações
 tornam-se desnecessárias, o valor literal é atualizado pela *substituição do
 objeto**. Alguns métodos importantes são:
-1. append(): equivale a `+=` ou concat(), é o único meio de acrescentar
+1. append: equivale a `+=` ou concat(), é o único meio de acrescentar
     caracteres no fim do valor armazenado, e aceita qualquer tipo de dado.
-2. insert(): é o que permite adicionar caracteres em uma posição específica do
+2. insert: é o que permite adicionar caracteres em uma posição específica do
     valor atual, com o auxílio de um índice como 1º argumento.
-3. delete(): permite excluir caracteres no intervalo dado, com *intervalo final
+3. delete: permite excluir caracteres no intervalo dado, com *índice final
     exclusivo*.
+4. reverse: inverte a ordem dos caracteres na string armazenada.
