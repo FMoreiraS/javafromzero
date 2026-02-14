@@ -35,3 +35,7 @@ Obs.: Os pacotes no core receberam letras no início dos nomes apenas para orden
   10. Classes abstratas
   11. Interfaces
   12. Polimorfismo
+  13. Exceções
+  14. Classes wrappers
+  15. Classes utilitárias: String
+  16. Classes utilitárias: Date e outras classes de manipulação de tempo
