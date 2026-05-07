@@ -39,3 +39,6 @@ Obs.: Os pacotes no core receberam letras no início dos nomes apenas para orden
   14. Classes wrappers
   15. Classes utilitárias: String
   16. Classes utilitárias: Date e outras classes de manipulação de tempo
+
+## Sugestões
+Gostou da ideia do repositório e deseja fazer sugestões sobre o conteúdo já produzido, tirar uma dúvida? Fique à vontade para gerar uma **issue** ou **pull request**, com um texto preciso com a sugestão de melhoria nos textos ou códigos ou com a dúvida, isso pode tornar o projeto útil para outros iniciantes em Java. E se realmente gostou do conteúdo, dê uma estrela ao repositório.
