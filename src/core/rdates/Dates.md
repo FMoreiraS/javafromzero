@@ -18,4 +18,4 @@ Os calendários disponíveis (subclasses) são o gregoriano, o budista e o imper
 japonês, e a classe possui várias constantes, como os dias da semana e os meses,
 além de valores relativos como `DAY_OF_WEEK` e `DAY_OF_YEAR`.  
 É válido conhecer Date e Calendar para eventuais contatos com sistemas legados,
-mas não
+mas não são recomendadas para o desenvolvimento de novos sistemas.
