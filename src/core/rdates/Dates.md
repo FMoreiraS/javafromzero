@@ -67,3 +67,17 @@ correspondente como argumento do `getInstance` da NumberFormat.
 
     System.out.println(nf1.format(bigD));
 ```
+De modo similar, pode-se ver as convenções de formatação de moeda usando o método
+`getCurrencyInstance` da NumberFormat. E vale mencionar a possibilidade de formatar
+também strings para um valor numérico ou monetário, usando o `parse()`.
+```java
+    NumberFormat currencyFormat3 = NumberFormat.getCurrencyInstance(Locale.US);
+
+    System.out.println(currencyFormat1.format(bigD));
+    try {
+        System.out.println(currencyFormat1.parse("10000000.9773"));
+        // Caracteres inválidos na string causarão exceção.
+    } catch (ParseException e) {
+        e.printStackTrace();
+    }
+```

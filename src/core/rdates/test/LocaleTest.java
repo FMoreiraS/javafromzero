@@ -2,6 +2,7 @@ package core.rdates.test;
 
 import java.text.DateFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -27,10 +28,25 @@ public class LocaleTest {
         NumberFormat nf2 = NumberFormat.getInstance(localeJapan);
         NumberFormat nf3 = NumberFormat.getInstance(Locale.US);
         double bigD = 1_000_000.9973;
-
+        
         System.out.println(nf1.format(bigD));
         System.out.println(nf2.format(bigD));
         System.out.println(nf3.format(bigD));
+        
+        // Formatação de moedas
+        NumberFormat currencyFormat1 = NumberFormat.getCurrencyInstance(localeItaly);
+        NumberFormat currencyFormat2 = NumberFormat.getCurrencyInstance(localeJapan);
+        NumberFormat currencyFormat3 = NumberFormat.getCurrencyInstance(Locale.US);
+        
+        System.out.println(currencyFormat1.format(bigD));
+        System.out.println(currencyFormat2.format(bigD));
+        System.out.println(currencyFormat3.format(bigD));
+        try {
+            System.out.println(currencyFormat1.parse("10000000.9773"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
