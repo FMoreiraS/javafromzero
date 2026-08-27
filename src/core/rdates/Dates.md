@@ -45,17 +45,10 @@ números e datas. No exemplo, é possível exibir a data atual no formato padrã
 alguns países.
 ```java
     Locale localeItaly = Locale.of("it", "IT");
-    Locale localeJapan = Locale.of("ja", "JP");
-    Locale localeBrazil = Locale.of("pt", "BR");
     Calendar calendar = Calendar.getInstance();
-
     DateFormat format1 = DateFormat.getDateInstance(DateFormat.FULL, localeItaly);
-    DateFormat format2 = DateFormat.getDateInstance(DateFormat.FULL, localeJapan);
-    DateFormat format3 = DateFormat.getDateInstance(DateFormat.FULL, localeBrazil);
 
     System.out.println(format1.format(calendar.getTime()));
-    System.out.println(format2.format(calendar.getTime()));
-    System.out.println(format3.format(calendar.getTime()));
 ```
 Como diz a documentação, é preciso conferir os códigos fornecidos por normas ISO,
 com atenção para valores depreciados.
@@ -66,13 +59,11 @@ A classe Locale auxilia também na formatação de números e de quantias monet�
 Existe uma classe dedicada à formatação de número: `NumberFormat`, subclasse de
 `Format` assim como DateFormat. Executando o exemplo seguinte, é possível ver
 as convenções de alguns países para a formatação de números.
+Para ver as convenções de qualquer país para números, basta usar o Locale
+correspondente como argumento do `getInstance` da NumberFormat.
 ```java
     NumberFormat nf1 = NumberFormat.getInstance(localeItaly);
-    NumberFormat nf2 = NumberFormat.getInstance(localeJapan);
-    NumberFormat nf3 = NumberFormat.getInstance(Locale.US);
     double bigD = 1_000_000.9973;
 
     System.out.println(nf1.format(bigD));
-    System.out.println(nf2.format(bigD));
-    System.out.println(nf3.format(bigD));
 ```
