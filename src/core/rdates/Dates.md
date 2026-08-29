@@ -100,3 +100,13 @@ para exibir uma data no formato brasileiro, por exemplo, fazemos:
 
     System.out.println(formattedDate);
 ```
+
+## LocalDate
+
+A partir da versão 8 temos um novo framework para trabalhar com dados temporais,
+no pacote `java.time`. Uma das novas classes é `LocalDate`, que representa _datas
+sem time-zone_ do calendário civil moderno (equivalente ao gregoriano). Objetos
+LocalDate são imutáveis e _thread-safe_, por segurança, e representam datas no
+formato **yyyy-MM-dd**, além de permitirem o acesso a cada campo: mês, ano, dia
+da semana etc.  
+`LocalDate date = LocalDate.of(33, 4, 1);`
