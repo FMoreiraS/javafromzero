@@ -1,5 +1,7 @@
 # Datas
+
 ## Classe Date
+
 É a primeira classe criada para trabalhar com datas em Java, presente desde a
 versão 1.0. Muitos métodos já estão obsoletos e, assim como a classe, seu uso é
 desaconselhado. A classe Date trabalha com valores em **milissegundos**, contados
@@ -8,7 +10,9 @@ bancos de dados). Os milissegundos são armazenados como um `long` (são valores
 muito extensos), mas a referência ao objeto tipo Date retorna por padrão o
 **valor dos milissegundos convertido em data**, o valor em milissegundos é
 obtido com o método `getTime()`.
+
 ## Classe Calendar
+
 Foi criada como alternativa para superar as limitações da classe Date, mas também
 é insuficiente para os sistemas modernos. Assim como Date, está no pacote
 `java.util`. Difere por ser uma **classe abstrata**, então só é possível usá-la
@@ -80,4 +84,19 @@ também strings para um valor numérico ou monetário, usando o `parse()`.
     } catch (ParseException e) {
         e.printStackTrace();
     }
+```
+
+## SimpleDateFormat
+
+`SimpleDateFormat` é uma classe concreta para formatação e conversão (parse) de
+datas, de modo dependente de localidade. É possível criar instâncias com padrões
+de formatação definidos pelo usuário, usando letras correspondentes a diferentes
+informações e qualquer texto, desde que este fique entre aspas simples. Assim,
+para exibir uma data no formato brasileiro, por exemplo, fazemos:
+```java
+    String pattern = "hh:mm 'de' d 'de' MMMM 'de' yyyy";
+    SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+    String formattedDate = dateFormat.format(new Date());
+
+    System.out.println(formattedDate);
 ```
